@@ -33,7 +33,7 @@ int main(){
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
   dataFromFile.close();
 
-  //popular vetor Xn
+  //popular vetor Xn com os valores iniciais do arquivo X0.dat
   dataFromFile.open("X0.dat", ios::in);
   if(dataFromFile.is_open())
     while (dataFromFile >> numero) Xn.push_back(numero);
@@ -60,7 +60,7 @@ int main(){
   double normaRn = 0.0;
   vector <double> Rn(N,0.0);
  
- 
+  //algoritmo de solução do sistema
   do{
     iter = iter+1;
     for(int i=0; i < N; i++){
@@ -73,10 +73,23 @@ int main(){
     residuo(A,Xn,B,Rn);
     normaRn = normaVetor(Rn);
   } while (normaRn > 0.001);
-    cout << "Solução do sistema:" << "\n";
-    for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
-    cout << "Norma do resíduo = " << normaRn << "\n";
-    cout << "Número de iterações = " << iter << "\n"; 
+  
+  //escrever na tela a solução do sistema
+  cout << "Solução do sistema:" << "\n";
+  for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
+  cout << "Norma do resíduo = " << normaRn << "\n";
+  cout << "Número de iterações = " << iter << "\n";
+
+  //--------------------------------------------------------------------------------------------------
+  //Criar o arquivo X.dat com a solução do sistema
+  //--------------------------------------------------------------------------------------------------
+  ofstream outputFile("X.dat");
+
+  if (outputFile.is_open()) {
+    for (const double& num : Xn) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    outputFile.close(); //Fecha o stream
+    cout << "Arquivo X.dat (solução do sistema) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
     return 0;
 }
 

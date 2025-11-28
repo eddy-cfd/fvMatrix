@@ -112,6 +112,17 @@ int main(){
     for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
     cout << "Norma do resíduo = " << normaRn1 << "\n";
     cout << "Número de iterações = " << iter << "\n"; 
+    
+ //--------------------------------------------------------------------------------------------------
+  //Criar o arquivo X.dat com a solução do sistema
+  //--------------------------------------------------------------------------------------------------
+  ofstream outputFile("X.dat");
+
+  if (outputFile.is_open()) {
+    for (const double& num : Xn) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    outputFile.close(); //Fecha o stream
+    cout << "Arquivo X.dat (solução do sistema) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
     return 0;
 }
 
