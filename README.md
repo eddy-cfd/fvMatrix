@@ -6,7 +6,8 @@ Componentes:
 
 Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas de um caso, obtidas pelo método de volumes finitos. Descrever o caso, usando figuras para mostrar a geometria, malha 1D, equações na forma diferencial e equações discretizadas.
 
-<img width="904" height="149" alt="image" src="https://github.com/user-attachments/assets/d892e4b4-09e4-4c71-999a-6020b3febca2" />
+<img width="634" height="109" alt="image" src="https://github.com/user-attachments/assets/19d56e97-7e42-4f80-bd75-4f1d5401cdd4" />
+
 
 2 - gaussSiedel.cpp
 
