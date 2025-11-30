@@ -7,7 +7,7 @@ Componentes:
 <br>
 <br>
 1 - fvTestCase.cpp <br><br>
-Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso abaixo, obtidas pelo método de volumes finitos.
+Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso ilustrado abaixo.
 <br>
 <br>
 
