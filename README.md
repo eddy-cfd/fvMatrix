@@ -13,8 +13,6 @@ Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizada
 
 ![Alt text](images/mesh.png)
 
-<br>
-<br>
 A discretização foi feita utilizando o método dos volumes finitos (FVM), com esquema de interpolação linear (diferenças centrais), tanto para o termo advectivo, quanto para o termo difusivo.
 <br>
 <br>
