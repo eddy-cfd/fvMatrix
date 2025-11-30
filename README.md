@@ -1,9 +1,21 @@
 <p align="center">
 L2C - Soluções em Computação Científica <br>
-Do cálculo à simulação computacional<br>
+Do Cálculo à Simulação Computacional<br>
 Fundamentos de Métodos Numéricos com Aplicações<br><br>
 Trabalho de fim de curso
 </p>
+<br>
+<br>
+Resumo: 
+<br>
+<br>
+O objetivo deste trabalho foi a implementação em C++ dos algorítmos iterativos de solução de sistemas lineares, usando os seguintes métodos:<br>
+Gauss-Siedel;<br>
+Gradiente Conjugado (GC);<br>
+Gradiente Conjugado pré-condicionado (PGC);<br>
+Gradiente Bi-Conjugado (GBiC);<br>
+Gradiente Bi-Conjugado pré-condicionado (PGBiC);<br>
+Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 <br>
 <br>
 Componentes:
