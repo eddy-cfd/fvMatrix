@@ -1,5 +1,8 @@
 <p align="center">
-Trabalho de final de curso
+L2C - Soluções em Computação Científica <br>
+Do cálculo à simulação computacional<br>
+Fundamentos de Métodos Numéricos com Aplicações<br><br>
+Trabalho de fim de curso
 </p>
 <br>
 <br>
