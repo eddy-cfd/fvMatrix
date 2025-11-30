@@ -1,4 +1,6 @@
+<center>
 Trabalho de final de curso
+</center>
 <br>
 <br>
 Componentes:
