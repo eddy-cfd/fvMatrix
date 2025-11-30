@@ -1,4 +1,4 @@
-[mesh.html](https://github.com/user-attachments/files/23835759/mesh.html)Trabalho de final de curso
+Trabalho de final de curso
 
 Componentes:
 
