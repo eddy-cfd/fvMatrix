@@ -1,6 +1,6 @@
-<center>
+<p align="center">
 Trabalho de final de curso
-</center>
+</p>
 <br>
 <br>
 Componentes:
