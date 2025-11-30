@@ -8,8 +8,6 @@ Componentes:
 <br>
 1 - fvTestCase.cpp <br><br>
 Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso ilustrado abaixo.
-<br>
-<br>
 
 ![Alt text](images/mesh.png)
 
