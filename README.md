@@ -11,7 +11,9 @@ Componentes:
 Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso abaixo, obtidas pelo método de volumes finitos.
 <br>
 <br>
+
 ![Alt text](images/mesh.png)
+
 <br>
 <br>
 
