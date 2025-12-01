@@ -36,7 +36,7 @@ A discretização foi feita utilizando o método dos volumes finitos (FVM), com 
 
 <br>
 <br>
-2 - gaussSiedel.cpp <br><br>
+3 - gaussSiedel.cpp <br><br>
 Este programa resolve o sistema Ax=B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat".
 <br>
 <br>
