@@ -28,7 +28,12 @@ Gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizada
 
 ![Alt text](images/mesh.png)
 
-A discretização foi feita utilizando o método dos volumes finitos (FVM), com esquema de interpolação linear (diferenças centrais), tanto para o termo advectivo, quanto para o termo difusivo.
+A discretização foi feita utilizando o método dos volumes finitos (FVM), com esquema de interpolação linear (diferenças centrais), tanto para o termo advectivo, quanto para o termo difusivo. A figura abaixo ilustra o processo.
+<br>
+<br>
+
+![Alt text](images/eq1.png)
+
 <br>
 <br>
 2 - gaussSiedel.cpp <br><br>

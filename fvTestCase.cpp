@@ -58,7 +58,7 @@ int main() {
   if (outputFileA.is_open()) {
     for (const double& num : coef_A) {outputFileA << num << "\n";} //Escreve cada número seguido por um newline
     outputFileA.close(); //Fecha o stream
-    cout << "Arquivo A.dat (termos fonte) criado/atualizado com sucesso." << "\n";
+    cout << "Arquivo A.dat (coeficientes) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
   
 
@@ -76,6 +76,20 @@ int main() {
     for (const double& num : coef_B) {outputFileB << num << "\n";} //Escreve cada número seguido por um newline
     outputFileB.close(); //Fecha o stream
     cout << "Arquivo B.dat (termos fonte) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
+
+  //--------------------------------------------------------------------------------------------------
+  //Criar o vetor X0 (estimativa inicial) e o arquivo B.dat
+  //--------------------------------------------------------------------------------------------------
+  vector <double> coef_X0(N);
+  for (size_t i=0; i <= N-1; i++) {coef_X0[i] = 0.5*(Tin+Tout);} //elementos internos
+
+  ofstream outputFileX0("X0.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  
+  if (outputFileX0.is_open()) {
+    for (const double& num : coef_X0) {outputFileX0 << num << "\n";} //Escreve cada número seguido por um newline
+    outputFileX0.close(); //Fecha o stream
+    cout << "Arquivo X0.dat (estimativa inicial) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
 
  return 0;
