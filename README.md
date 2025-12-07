@@ -1,7 +1,8 @@
 <p align="center">
 L2C - Soluções em Computação Científica <br><br>
 Curso:<br>
-Do Cálculo à Simulação Computacional - Fundamentos de Métodos Numéricos com Aplicações<br><br><br>
+Do Cálculo à Simulação Computacional - Fundamentos de Métodos Numéricos com Aplicações<br><br>
+Professor Rafael Gabler Gontijo<br><br><br>
 Trabalho de fim de curso
 </p>
 <br>
