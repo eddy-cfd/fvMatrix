@@ -24,7 +24,7 @@ Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 Revisão do Método dos Volumes Finitos (FVM)
 </p>
 <br>
-Considrede o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s] e temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
+Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s] e temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
 
