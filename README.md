@@ -18,11 +18,8 @@ Gradiente Bi-Conjugado pré-condicionado (PGBiC);<br>
 Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 <br>
 <br>
-Componentes:
-<br>
-<br>
-1 - fvTestCase.cpp <br><br>
-Este programa gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso ilustrado abaixo.
+Revisão do Método dos Volumes Finitos (FVM) <br><br>
+Considere o escoamento de ar através de um duto unidimensional (1D) na direção de A para B, com velocidade U [m/s], em regime estacionário. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
 
@@ -34,6 +31,13 @@ A discretização foi feita utilizando o método dos volumes finitos (FVM), com 
 
 ![Alt text](images/eq1.png)
 
+<br>
+<br>
+Componentes:
+<br>
+<br>
+1 - fvTestCase.cpp <br><br>
+Este programa gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso ilustrado acima.
 <br>
 <br>
 2 - gaussSiedel.cpp <br><br>
