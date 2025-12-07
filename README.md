@@ -24,13 +24,13 @@ Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 Revisão do Método dos Volumes Finitos (FVM)
 </p>
 <br>
-Considere o escoamento de ar através de um duto unidimensional (1D), em regime estacionário, com velocidade U [m/s] e temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente. Determinar a termperatura do ar ao longo do duto.
+Considrede o escoamento de ar através de um duto unidimensional (1D), em regime estacionário, com velocidade U [m/s] e temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
 
 ![Alt text](images/mesh.png)
 
-A discretização foi feita utilizando o método dos volumes finitos (FVM), com esquema de interpolação linear (diferenças centrais), tanto para o termo advectivo, quanto para o termo difusivo. A figura abaixo ilustra o processo.
+O perfil de temperatura ao longo do duto pode ser determinado analiticamente usando a equação 4. Pode-se também obter uma solução numérica, usando o método dos volumes finitos (FVM). Na sequência, pode-se acompanhar a aplicação do método FVM, discretizando-se a geometria do duto em volumes de controle, onde se realiza a integração da equação 2 em cada um dos volumes definidos. com esquema de interpolação linear (diferenças centrais), tanto para o termo advectivo, quanto para o termo difusivo. A figura abaixo ilustra o processo.
 <br>
 <br>
 
