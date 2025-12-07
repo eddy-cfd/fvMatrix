@@ -18,7 +18,11 @@ Gradiente Bi-Conjugado pré-condicionado (PGBiC);<br>
 Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 <br>
 <br>
-Revisão do Método dos Volumes Finitos (FVM) <br><br>
+<p align="center">
+Revisão do Método dos Volumes Finitos (FVM)
+</p>
+<br>
+<br>
 Considere o escoamento de ar através de um duto unidimensional (1D) na direção de A para B, com velocidade U [m/s], em regime estacionário. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
