@@ -43,6 +43,7 @@ A integração da equação 2 é feita através do Teorema de Gauss, que convert
 ![Alt text](images/figura3.png)
 
 <br>
+<br>
 <p align="center">
 Componentes de software
 </p>
