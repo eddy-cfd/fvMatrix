@@ -48,6 +48,11 @@ A dedução acima vale para volumes de controle no interior do domínio. No caso
 
 ![Alt text](images/figura4.png)
 
+![Alt text](images/figura5.png)
+
+<br>
+<br>
+<br>
 <p align="center">
 Componentes de software
 </p>
