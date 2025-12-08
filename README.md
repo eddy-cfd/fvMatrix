@@ -52,6 +52,10 @@ A dedução acima vale para volumes de controle no interior do domínio. No caso
 
 <br>
 <br>
+Depois de obter as equações algébricas para o cálculo da variável de interesse do escoamento, é necessário arranjar as equações na forma de um sistema linear, no formato Ax=B, montar os vetores A e B, para que então o sisema possa ser resolvido utilizando algum método numério implementado neste trabalho. Basicamente, cada volume de controle tem uma equação associada, que o relaciona com os volumes vizinhos, correspondente a uma linha na matriz "A". O volume de controle em questão tem o subindice "P, o volume à esquerda, subindice "E" e o volume a direita, subindice "D".
+
+
+<br>
 <br>
 <p align="center">
 Componentes de software
