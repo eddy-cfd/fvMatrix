@@ -45,6 +45,9 @@ A integração da equação 2 é feita através do Teorema de Gauss, que convert
 A dedução acima vale para volumes de controle no interior do domínio. No caso de volumes de controle na fronteira do dominio, ou seja, volumes de controle cuja uma, ou mais faces, formam o contorno do domínio, a equação 6 toma formas mais específicas. No caso do volume de controle do lado esquerdo do duto, os valores das condições de contorno são aplicados diretamente à face do volume, cujo afastamento em relação ao centróide do volume de controle é igual a metade do comprimento do volume de controle.
 <br>
 <br>
+
+![Alt text](images/figura4.png)
+
 <p align="center">
 Componentes de software
 </p>
