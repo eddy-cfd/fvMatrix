@@ -22,6 +22,8 @@ Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema de equações, na forma A.x=B, baseado na discretização de um problema físico, utilizando o Método dos Volumes Finitos (FVM). Para se entender o funcionamento do programa, será feito primeiramente uma revisão do FVM, já no contexto do enunciado do problema físico que se pretende resolver.
 <br>
 <br>
+<br>
+<br>
 <p align="center">
 Revisão do Método dos Volumes Finitos (FVM)
 </p>
