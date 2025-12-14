@@ -58,7 +58,10 @@ Basicamente, cada volume de controle tem uma equação algébrica associada com 
 
 
 Depois de obter as equações algébricas para o cálculo da variável de interesse do escoamento, é necessário arranjar as equações na forma de um sistema linear, no formato Ax=B, montar os vetores A e B, para que então o sistema possa ser resolvido utilizando algum método numérico implementado neste repositório. 
+<br>
+<br>
 
+![Alt text](images/figura7.png)
 
 <br>
 <br>
