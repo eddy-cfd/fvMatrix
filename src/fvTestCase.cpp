@@ -11,47 +11,65 @@ int main() {
   //declaração e inicialização de variáveis
   //
   //
-  int N = 10;            //numero de celulas
-  double A = 0.1;        //área da seção transversal
-  double d = 1.0;        //distancia entre centróides
-  double u = 0.01;        //velocidade do escoamento
-  double Tin = 100.0;      //temperatura inlet
-  double Tout = 200.0;     //temperatura outlet
-  double sBar = 1000.0;  //taxa volumetrica de geracao de calor
-  double k = 100.0;      //condutividade térmica
-  double rho = 1.0;      //densidade
-  double cp = 1000.0;    //calor especifico
+  int N = 10;                           //numero de celulas
+  double d = 1.0;                       //distancia entre centróides
+  double u = 0.01;                      //velocidade do escoamento
+  double Tin = 100.0;                   //temperatura inlet
+  double Tout = 200.0;                  //temperatura outlet
+  double qdot = 1000.0;                 //taxa volumetrica de geracao de calor
+  double k = 100.0;                     //condutividade térmica
+  double rho = 1.0;                     //densidade
+  double cp = 1000.0;                   //calor especifico
+  double alfa = 0.0; alfa=k/(rho*cp);   //difusividade térmica
+
+  double i_aE = 0.0; i_aE = (alfa/d) + 0.5*u;
+  double i_aD = 0.0; i_aD = (alfa/d) - 0.5*u;
+  double i_Fp = 0.0;
+  double i_cFp = 0.0;
+  double i_Fphi = 0.0; i_Fphi = qdot;
+  double i_cFphi = 0.0; i_cFphi = d;
+  double i_aP = 0.0; i_aP = i_aE + i_aD + i_Fp;
+  double i_bp = 0.0; i_bp = (i_cFphi * i_Fphi) + (i_cFp * i_Fp);
+   
+  double e_aE = 0.0;
+  double e_aD = 0.0; e_aD = (alfa / d) - (0.5 * u);
+  double e_Fp = 0.0; e_Fp = u + (2 * alfa / d);
+  double e_cFp = 0.0; e_cFp = Tin;
+  double e_Fphi = 0.0; e_Fphi = qdot;
+  double e_cFphi = 0.0; e_cFphi = d;
+  double e_aP = 0.0; e_aP = e_aE + e_aD + e_Fp;
+  double e_bp = 0.0; e_bp = (e_cFphi * e_Fphi) + (e_cFp * e_Fp);
  
-  double D = 0.0; D=k*A/d;
-  double F = 0.0; F=rho*cp*u*A;
-  double V = 0.0; V=A*d;
+  double d_aE = 0.0; d_aE = (alfa / d) + (0.5 * u);
+  double d_aD = 0.0;
+  double d_Fp = 0.0; d_Fp = (2 * alfa / d) - u;
+  double d_cFp = 0.0; d_cFp = Tout;
+  double d_Fphi = 0.0; d_Fphi = qdot;
+  double d_cFphi = 0.0; d_cFphi = d;
+  double d_aP = 0.0; d_aP = d_aE + d_aD + d_Fp;
+  double d_bp = 0.0; d_bp = (d_cFphi * d_Fphi) + (d_cFp * d_Fp);
 
-  double i_aL = 0.0; i_aL = D + 0.5*F;
-  double i_aR = 0.0; i_aR = D - 0.5*F;
-  double i_Sp = 0.0;
-  double i_aP = 0.0; i_aP = i_aL + i_aR + F - F - i_Sp;
-  double i_Su = 0.0; i_Su = sBar * V;
-  
-  double l_aL = 0.0;
-  double l_aR = 0.0; l_aR = D - 0.5*F;
-  double l_Sp = 0.0; l_Sp = -2 * D - F;
-  double l_aP = 0.0; l_aP = l_aL + l_aR + F - F - l_Sp;
-  double l_Su = 0.0; l_Su = Tin * (2 * D + F) + sBar * V;
-
-  double r_aL = 0.0; r_aL = D + 0.5*F;
-  double r_aR = 0.0;
-  double r_Sp = 0.0; r_Sp = -2 * D + F;
-  double r_aP = 0.0; r_aP = r_aL + r_aR + F - F - r_Sp;
-  double r_Su = 0.0; r_Su = Tout * (2 * D - F) + sBar * V;
 
   //-------------------------------------------------------------------------------------------------
   //Criar o vetore A (coeficientes) e o arquivo A.dat
   //-------------------------------------------------------------------------------------------------
   vector <double> coef_A(N*N,0);
-  coef_A[0] = l_aP;
-  coef_A[1] = -l_aR;
-  coef_A[coef_A.size()-2] = -r_aL;
-  coef_A[coef_A.size()-1] = r_aP;
+
+  //Alocação dos termos da dianonal principal
+  coef_A[0] = e_aP; //elemento da esquerda (inlet)
+  int j = 1;
+  for (int i = 1; i < N-1; i++) {coef_A[i*N+j] = i_aP; j++;} //elementos internos
+  coef_A[coef_A.size()-1] = d_aP; //elelento da direita (outlet)
+  
+  //Alocação dos termos da diagonal superior
+  j = 2;
+  coef_A[1] = -e_aD; //elemento a direita do elemento de inlet
+  for (int i = 1; i < N-1; i++) {coef_A[i*N+j] = -i_aD; j++;} //elementos internos
+
+  //Alocação dos termos da diagonal inferior
+  j = 0;
+  for (int i = 1; i < N-1; i++) {coef_A[i*N+j] = -i_aE; j++;} //elementos internos
+  coef_A[coef_A.size()-2] = -d_aE; //elemento a esquerda do elemento de outlet
 
   ofstream outputFileA("A.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
   
@@ -66,9 +84,9 @@ int main() {
   //Criar o vetor B (termos fonte) e o arquivo B.dat
   //--------------------------------------------------------------------------------------------------
   vector <double> coef_B(N);
-  coef_B[0] = l_Su;  //primeiro elemento do vetor (elemento de face)
-  coef_B[N-1] = r_Su;  //ultimo elemento do vetor (elemento de face)
-  for (size_t i=1; i <= N-2; i++) {coef_B[i] = i_Su;} //elementos internos
+  coef_B[0] = e_bp;  //primeiro elemento do vetor (elemento de face)
+  coef_B[N-1] = d_bp;  //ultimo elemento do vetor (elemento de face)
+  for (size_t i=1; i <= N-2; i++) {coef_B[i] = i_bp;} //elementos internos
 
   ofstream outputFileB("B.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
   
