@@ -27,7 +27,7 @@ int main() {
   double i_Fp = 0.0;
   double i_cFp = 0.0;
   double i_Fphi = 0.0; i_Fphi = qdot;
-  double i_cFphi = 0.0; i_cFphi = d;
+  double i_cFphi = 0.0; i_cFphi = d/(rho*cp);
   double i_aP = 0.0; i_aP = i_aE + i_aD + i_Fp;
   double i_bp = 0.0; i_bp = (i_cFphi * i_Fphi) + (i_cFp * i_Fp);
    
@@ -36,7 +36,7 @@ int main() {
   double e_Fp = 0.0; e_Fp = u + (2 * alfa / d);
   double e_cFp = 0.0; e_cFp = Tin;
   double e_Fphi = 0.0; e_Fphi = qdot;
-  double e_cFphi = 0.0; e_cFphi = d;
+  double e_cFphi = 0.0; e_cFphi = d/(rho*cp);
   double e_aP = 0.0; e_aP = e_aE + e_aD + e_Fp;
   double e_bp = 0.0; e_bp = (e_cFphi * e_Fphi) + (e_cFp * e_Fp);
  
@@ -45,7 +45,7 @@ int main() {
   double d_Fp = 0.0; d_Fp = (2 * alfa / d) - u;
   double d_cFp = 0.0; d_cFp = Tout;
   double d_Fphi = 0.0; d_Fphi = qdot;
-  double d_cFphi = 0.0; d_cFphi = d;
+  double d_cFphi = 0.0; d_cFphi = d/(rho*cp);
   double d_aP = 0.0; d_aP = d_aE + d_aD + d_Fp;
   double d_bp = 0.0; d_bp = (d_cFphi * d_Fphi) + (d_cFp * d_Fp);
 
