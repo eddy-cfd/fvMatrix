@@ -66,9 +66,6 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 
 ![Alt text](images/figura6.png)
 
-<br>
-<br>
-
 ![Alt text](images/figura7.png)
 
 <br>
