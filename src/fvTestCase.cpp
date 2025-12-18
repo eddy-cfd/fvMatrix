@@ -11,13 +11,13 @@ int main() {
   //declaração e inicialização de variáveis
   //
   //
-  double N = 10.0;                      //numero de celulas
-  double L = 1.0;                       //comprimento do duto
+  double N = 100.0;                      //numero de celulas
+  double L = 10.0;                       //comprimento do duto
   double d = 0.0; d=L/N;                //tamanho do elemento e distancia entre centróides
   double u = 0.01;                      //velocidade do escoamento
   double Tin = 100.0;                   //temperatura inlet
   double Tout = 200.0;                  //temperatura outlet
-  double qdot = 1000.0;                 //taxa volumetrica de geracao de calor
+  double qdot = 0.0;                 //taxa volumetrica de geracao de calor
   double k = 100.0;                     //condutividade térmica
   double rho = 1.0;                     //densidade
   double cp = 1000.0;                   //calor especifico
@@ -46,6 +46,22 @@ int main() {
   double d_Fphi = 0.0; d_Fphi = (qdot*d)/(rho*cp);
   double d_aP = 0.0; d_aP = d_aE + d_aD + d_Fp;
   double d_bp = 0.0; d_bp = d_Fphi + (d_cFp * d_Fp);
+
+
+  //--------------------------------------------------------------------------------------------------
+  //Criar o vetor R (coordenadas dos centróides dos volumes de controle) e o arquivo r.dat
+  //--------------------------------------------------------------------------------------------------
+  vector <double> R(N);
+  R[0] = d/2;  //primeiro elemento do vetor (elemento de face)
+  for (size_t i=1; i < N; i++) {R[i] = R[i-1]+d;} //elementos internos
+
+  ofstream outputFileR("R.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  
+  if (outputFileR.is_open()) {
+    for (const double& num : R) {outputFileR << num << "\n";} //Escreve cada número seguido por um newline
+    outputFileR.close(); //Fecha o stream
+    cout << "Arquivo R.dat (coordenadas dos centróides) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
 
 
   //-------------------------------------------------------------------------------------------------

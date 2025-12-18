@@ -76,7 +76,7 @@ int main(){
   
   //escrever na tela a solução do sistema
   cout << "Solução do sistema:" << "\n";
-  for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
+  //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
   cout << "Norma do resíduo = " << normaRn << "\n";
   cout << "Número de iterações = " << iter << "\n";
 
