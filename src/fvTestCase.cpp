@@ -11,8 +11,9 @@ int main() {
   //declaração e inicialização de variáveis
   //
   //
-  int N = 10;                           //numero de celulas
-  double d = 1.0;                       //distancia entre centróides
+  double N = 10.0;                      //numero de celulas
+  double L = 1.0;                       //comprimento do duto
+  double d = 0.0; d=L/N;                //tamanho do elemento e distancia entre centróides
   double u = 0.01;                      //velocidade do escoamento
   double Tin = 100.0;                   //temperatura inlet
   double Tout = 200.0;                  //temperatura outlet
