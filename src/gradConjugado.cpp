@@ -17,11 +17,13 @@ int main(){
   //variáveis de dados de entrada
   vector <double> A;
   vector <double> B;
-  vector <double> X0;
+  vector <double> r;  
+  vector <double> X;
   ifstream dataFromFile;
+  ofstream dataToFile;
   double numero;
 
-  //popular vetor A
+  //carregar vetor A
   dataFromFile.open("A.dat", ios::in);
   if(dataFromFile.is_open())
     while (dataFromFile >> numero) A.push_back(numero);
@@ -29,7 +31,7 @@ int main(){
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
   dataFromFile.close();
 
-  //popular vetor B
+  //carregar vetor B
   dataFromFile.open("B.dat", ios::in);
   if(dataFromFile.is_open())
     while (dataFromFile >> numero) B.push_back(numero);
@@ -37,81 +39,93 @@ int main(){
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
   dataFromFile.close();
 
-  //popular vetor X0
+  //carregar vetor X com os valores iniciais do arquivo X0.dat
   dataFromFile.open("X0.dat", ios::in);
   if(dataFromFile.is_open())
-    while (dataFromFile >> numero) X0.push_back(numero);
+    while (dataFromFile >> numero) X.push_back(numero);
   else 
-    {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
-  dataFromFile.close();
+    {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}  
 
 
   //verificação da consistência dos dados
   cout << "Método grandiente conjugado\n\n";
-  if(X0.size() == B.size() || A.size() == pow(B.size(),2)) 
+  if(X.size() == B.size() || A.size() == pow(B.size(),2)) 
     cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
   else  
   {cout << "Problema com arquivos de dados ou inconsistência de dados\n\n"; return 1;}
 
   //variáveis internas do algoritmo
-  int N = X0.size();
+  int N = X.size();
   int iter = 0;
-  double normaRn1 = 0.0;
-  double ALFAn = 0.0;
-  double ALFAnNum = 0.0;
-  double ALFAnDen = 1.0;
-  double BETAn = 0.0;
-  double BETAnNum = 0.0;
-  double BETAnDen = 1.0;
-  vector <double> Rn(N,0);
-  vector <double> Rn1(N,0);
-  vector <double> Dn(N,0);
+  double normaR = 0.0;
+  double ALFA = 0.0;
+  double ALFANum = 0.0;
+  double ALFADen = 1.0;
+  double BETA = 0.0;
+  double BETANum = 0.0;
+  double BETADen = 1.0;
+  vector <double> R(N,0);
+  vector <double> R1(N,0);
+  vector <double> D(N,0);
   vector <double> ADn(N,0);
   vector <double> ALFAnDn(N,0);
   vector <double> BETAnDn(N,0);
-  vector <double> Xn=X0;
   vector <double> Xn1(N,0); 
 
-  //inicialização do vetor resíduo(Rn) de direção(Dn)  para inicio das iterações
-  residuo(A,X0,B,Rn);   
-  Dn=Rn;
+  //inicialização do vetor resíduo(R) de direção(D)  para inicio das iterações
+  residuo(A,X,B,R);   
+  D=R;
   
   //loop 
   do{
     iter = iter+1;
     //cálculo do alfa
-    ALFAnNum = prodEscVetor(Dn, Rn);
-    multMatrizVetor(A, Dn, ADn);
-    ALFAnDen = prodEscVetor(Dn, ADn);  
+    ALFAnNum = prodEscVetor(D, R);
+    multMatrizVetor(A, D, ADn);
+    ALFAnDen = prodEscVetor(D, ADn);  
     ALFAn = ALFAnNum / ALFAnDen;
 
     //cálculo do Xn+1
-    multEscVetor(ALFAn, Dn, ALFAnDn);
-    somaVetor(Xn, ALFAnDn, Xn1);
+    multEscVetor(ALFAn, D, ALFAnDn);
+    somaVetor(X, ALFAnDn, Xn1);
   
     //cálculo do resíduo de Xn+1
-    residuo(A,Xn1,B,Rn1);
-    normaRn1 = normaVetor(Rn1);
+    residuo(A,Xn1,B,R1);
+    normaR1 = normaVetor(Rn1);
     
     //cálculo do beta
-    BETAnNum = prodEscVetor(Rn1, Rn1);
+    BETAnNum = prodEscVetor(R1, Rn1);
     BETAnDen = prodEscVetor(Rn, Rn);
     BETAn = BETAnNum / BETAnDen;
 
-    //atualiza valor  do Dn;
-    multEscVetor(BETAn, Dn, BETAnDn);
-    somaVetor(Rn1, BETAnDn, Dn);
+    //atualiza valor  do D;
+    multEscVetor(BETAn, D, BETAnDn);
+    somaVetor(R1, BETAnDn, D);
 
     //atualiza valores para próximo loop
-    Xn=Xn1;
-    Rn=Rn1;
+    X=Xn1;
+    Rn=R1;
 
-    } while (normaRn1 > 0.001);
+    } while (normaR1 > 0.001);
 
     cout << "Solução do sistema de equações:\n";
     //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
-    cout << "Norma do resíduo = " << normaRn1 << "\n";
+    cout << "Norma do resíduo = " << normaR1 << "\n";
     cout << "Número de iterações = " << iter << "\n"; 
+ 
+    //--------------------------------------------------------------------------------------------------
+  //Criar o arquivo RX.dat com a solução do sistema para plotagem
+  //--------------------------------------------------------------------------------------------------
+ 
+  dataToFile.open ("RX.dat");
+  if (dataToFile.is_open()) {
+    for (int i=0; i<N; i++){  
+      dataToFile << R[i] << " ";
+      dataToFile << X[i] << "\n"; //Escreve cada número seguido por um newline
+    }
+    dataToFile.close(); //Fecha o stream
+    cout << "Arquivo RX.dat (R:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
     
     //--------------------------------------------------------------------------------------------------
     //Criar o arquivo X.dat com a solução do sistema
@@ -119,7 +133,7 @@ int main(){
   ofstream outputFile("X.dat");
 
   if (outputFile.is_open()) {
-    for (const double& num : Xn) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    for (const double& num : X) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
     outputFile.close(); //Fecha o stream
     cout << "Arquivo X.dat (solução do sistema) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}

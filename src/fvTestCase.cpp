@@ -51,16 +51,16 @@ int main() {
   //--------------------------------------------------------------------------------------------------
   //Criar o vetor R (coordenadas dos centróides dos volumes de controle) e o arquivo r.dat
   //--------------------------------------------------------------------------------------------------
-  vector <double> R(N);
-  R[0] = d/2;  //primeiro elemento do vetor (elemento de face)
-  for (size_t i=1; i < N; i++) {R[i] = R[i-1]+d;} //elementos internos
+  vector <double> r(N);
+  r[0] = d/2;  //primeiro elemento do vetor (elemento de face)
+  for (size_t i=1; i < N; i++) {r[i] = r[i-1]+d;} //elementos internos
 
-  ofstream outputFileR("R.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  ofstream outputFileR("r.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
   
   if (outputFileR.is_open()) {
-    for (const double& num : R) {outputFileR << num << "\n";} //Escreve cada número seguido por um newline
+    for (const double& num : r) {outputFileR << num << "\n";} //Escreve cada número seguido por um newline
     outputFileR.close(); //Fecha o stream
-    cout << "Arquivo R.dat (coordenadas dos centróides) criado/atualizado com sucesso." << "\n";
+    cout << "Arquivo r.dat (coordenadas dos centróides) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
 
 

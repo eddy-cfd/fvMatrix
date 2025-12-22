@@ -10,87 +10,108 @@ double normaVetor(vector<double>&);
 
 
 int main(){
-  //variáveis de dados de entrada
+  //variáveis de dados de entrada/saída
   vector <double> A;
   vector <double> B;
-  vector <double> Xn;
+  vector <double> X;
+  vector <double> r;
   ifstream dataFromFile;
+  ofstream dataToFile;
   double numero;
 
-  //popular vetor A
-  dataFromFile.open("A.dat", ios::in);
+
+  //carregar vetor A
+  dataFromFile.open ("A.dat", ios::in);
   if(dataFromFile.is_open())
     while (dataFromFile >> numero) A.push_back(numero);
   else 
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
   dataFromFile.close();
 
-  //popular vetor B
-  dataFromFile.open("B.dat", ios::in);
+  //carregar vetor B
+  dataFromFile.open ("B.dat", ios::in);
   if(dataFromFile.is_open())
     while (dataFromFile >> numero) B.push_back(numero);
   else 
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
   dataFromFile.close();
 
-  //popular vetor Xn com os valores iniciais do arquivo X0.dat
+  //carregar vetor X com os valores iniciais do arquivo X0.dat
   dataFromFile.open("X0.dat", ios::in);
   if(dataFromFile.is_open())
-    while (dataFromFile >> numero) Xn.push_back(numero);
+    while (dataFromFile >> numero) X.push_back(numero);
   else 
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
   dataFromFile.close();
 
+  //carregar vetor r com coordenadas r.dat
+  //usado quando está resolvendo caso gerado pelo fvMatrix
+  dataFromFile.open("r.dat", ios::in);
+  if(dataFromFile.is_open())
+    while (dataFromFile >> numero) r.push_back(numero);
+  else 
+    {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
+  dataFromFile.close();
 
-  //verificação da consistência dos dados
-  cout << "Método Gauss Siedel\n\n";
-  if(Xn.size() == B.size() || A.size() == pow(B.size(),2)) 
-    cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
-  else  
-  {cout << "Problema com arquivos de dados ou inconsistência de dados\n\n"; return 1;}
-
-  //verificação se matriz A é diagonal dominante
-  //-----------FALTA IMPLEMENTAR---------------------------
- 
   //variáveis internas do algoritmo
-  int N = Xn.size();
+  int N = X.size();
   int iter = 0;
   double somaN = 0.0;
   double somaN_ = 0.0;
-  double normaRn = 0.0;
-  vector <double> Rn(N,0.0);
- 
-  //algoritmo de solução do sistema
+  vector <double> R(N) ;
+  double normaR = 0.0;
+  
+  //verificação da consistência dos dados
+  cout << "Método Gauss Siedel\n\n";
+  if(X.size() == B.size() || A.size() == pow(B.size(),2)) 
+    cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
+  else  
+    {cout << "Problema com arquivos de dados ou inconsistência de dados\n\n"; return 1;}
+
+  //algoritmo de Gauss-Siedel
   do{
-    iter = iter+1;
+    iter++;
     for(int i=0; i < N; i++){
       somaN=0.0;
-      somaN_=0.0; 
-      if (i-1 >= 0) for(int j=0; j <= i-1; j++) somaN += A[i*N+j]*Xn[j];
-      for(int j=i+1; j < N; j++) somaN_ += A[i*N+j]*Xn[j]; 
-      Xn[i]=(1/A[i*(N+1)])*(B[i]-somaN_-somaN);
+      somaN_=0.0;
+      if (i-1 >= 0) for(int j=0; j <= i-1; j++) somaN += A[i*N+j]*X[j];
+      for(int j=i+1; j < N; j++) somaN_ += A[i*N+j]*X[j]; 
+      X[i]=(1/A[i*(N+1)])*(B[i]-somaN_-somaN);
     }
-    residuo(A,Xn,B,Rn);
-    normaRn = normaVetor(Rn);
-  } while (normaRn > 0.001);
+    residuo(A,X,B,R);
+    normaR = normaVetor(R);
+  } while (normaR > 0.001);
   
   //escrever na tela a solução do sistema
   cout << "Solução do sistema:" << "\n";
-  //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
-  cout << "Norma do resíduo = " << normaRn << "\n";
+  //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << X[i] << "\n";      
+  cout << "Norma do resíduo = " << normaR << "\n";
   cout << "Número de iterações = " << iter << "\n";
 
   //--------------------------------------------------------------------------------------------------
   //Criar o arquivo X.dat com a solução do sistema
   //--------------------------------------------------------------------------------------------------
-  ofstream outputFile("X.dat");
-
-  if (outputFile.is_open()) {
-    for (const double& num : Xn) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
-    outputFile.close(); //Fecha o stream
+  dataToFile.open ("X.dat");
+  if (dataToFile.is_open()) {
+    for (const double& num : X) {dataToFile << num << "\n";} //Escreve cada número seguido por um newline
+    dataToFile.close(); //Fecha o stream
     cout << "Arquivo X.dat (solução do sistema) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
-    return 0;
+  
+  //--------------------------------------------------------------------------------------------------
+  //Criar o arquivo RX.dat com a solução do sistema para plotagem
+  //--------------------------------------------------------------------------------------------------
+ 
+  dataToFile.open ("rX.dat");
+  if (dataToFile.is_open()) {
+    for (int i=0; i<N; i++){  
+      dataToFile << r[i] << " ";
+      dataToFile << X[i] << "\n"; //Escreve cada número seguido por um newline
+    }
+    dataToFile.close(); //Fecha o stream
+    cout << "Arquivo rX.dat (r:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}  
+  return 0;
 }
 
 void residuo(vector<double>& mtx_A, vector<double>& vet_X, vector<double>& vet_B, vector<double>& vet_R){
