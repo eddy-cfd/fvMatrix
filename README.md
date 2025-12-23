@@ -76,12 +76,18 @@ Componentes de software
 </p>
 <br>
 1 - fvTestCase.cpp <br><br>
-Este programa gera os vetores "A" e "B", do sistema Ax=B, a partir das equações discretizadas do caso ilustrado acima.
+Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.<br><br>
+Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arquivos:<br><br>
+-->  A.dat - Vetor A (matriz de coeficientes).<br>
+-->  B.dat - Vetor B (termos fonte).<br>
+-->  X0.dat - Vetor X0 (solução inicial).<br>
+-->  r.dat - Coordenadas (afastamentos) dos centróides dos volumes de controle, ao longo do duto.<br>
+-->  solAnalitica.dat - Solução analítica do caso. Está no formato apropriado para ser usado no GNUPlot.
 <br>
 <br>
 2 - gaussSiedel.cpp <br><br>
-Este programa resolve o sistema Ax=B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat".
+Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat".
 <br>
 <br>
 3 - gradConjugado.cpp <br><br>
-Este programa resolve o sistema Ax=B, usando o método do gradiente conjungado. Para tanto, é necessário que a matriz "A" seja simétrica e positivo definida. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 
+Este programa resolve o sistema A.X = B, usando o método do gradiente conjungado. Para tanto, é necessário que a matriz "A" seja simétrica e positivo definida. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 

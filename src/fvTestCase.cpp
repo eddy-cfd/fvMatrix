@@ -14,7 +14,7 @@ int main() {
   double N = 100.0;                      //numero de celulas
   double L = 10.0;                       //comprimento do duto
   double d = 0.0; d=L/N;                //tamanho do elemento e distancia entre centróides
-  double u = 0.01;                      //velocidade do escoamento
+  double u = 0.8;                     //velocidade do escoamento
   double Tin = 100.0;                   //temperatura inlet
   double Tout = 200.0;                  //temperatura outlet
   double qdot = 0.0;                 //taxa volumetrica de geracao de calor
@@ -48,24 +48,27 @@ int main() {
   double d_bp = 0.0; d_bp = d_Fphi + (d_cFp * d_Fp);
 
 
+  //declaração de objetos para I/O
+  ofstream outputFile;
+
   //--------------------------------------------------------------------------------------------------
-  //Criar o vetor R (coordenadas dos centróides dos volumes de controle) e o arquivo r.dat
+  //Criar o vetor r (coordenadas dos centróides dos volumes de controle) e o arquivo r.dat
   //--------------------------------------------------------------------------------------------------
   vector <double> r(N);
   r[0] = d/2;  //primeiro elemento do vetor (elemento de face)
   for (size_t i=1; i < N; i++) {r[i] = r[i-1]+d;} //elementos internos
 
-  ofstream outputFileR("r.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  outputFile.open ("r.dat"); //Abre o stream
   
-  if (outputFileR.is_open()) {
-    for (const double& num : r) {outputFileR << num << "\n";} //Escreve cada número seguido por um newline
-    outputFileR.close(); //Fecha o stream
+  if (outputFile.is_open()) {
+    for (const double& num : r) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    outputFile.close(); //Fecha o stream
     cout << "Arquivo r.dat (coordenadas dos centróides) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
 
 
   //-------------------------------------------------------------------------------------------------
-  //Criar o vetore A (coeficientes) e o arquivo A.dat
+  //Criar o vetor A (coeficientes) e o arquivo A.dat
   //-------------------------------------------------------------------------------------------------
   vector <double> coef_A(N*N,0);
 
@@ -85,11 +88,11 @@ int main() {
   for (int i = 1; i < N-1; i++) {coef_A[i*N+j] = -i_aE; j++;} //elementos internos
   coef_A[coef_A.size()-2] = -d_aE; //elemento a esquerda do elemento de outlet
 
-  ofstream outputFileA("A.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  outputFile.open("A.dat"); //Abre o stream
   
-  if (outputFileA.is_open()) {
-    for (const double& num : coef_A) {outputFileA << num << "\n";} //Escreve cada número seguido por um newline
-    outputFileA.close(); //Fecha o stream
+  if (outputFile.is_open()) {
+    for (const double& num : coef_A) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    outputFile.close(); //Fecha o stream
     cout << "Arquivo A.dat (coeficientes) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
   
@@ -102,26 +105,42 @@ int main() {
   coef_B[N-1] = d_bp;  //ultimo elemento do vetor (elemento de face)
   for (size_t i=1; i <= N-2; i++) {coef_B[i] = i_bp;} //elementos internos
 
-  ofstream outputFileB("B.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  outputFile.open("B.dat"); //Abre o stream 
   
-  if (outputFileB.is_open()) {
-    for (const double& num : coef_B) {outputFileB << num << "\n";} //Escreve cada número seguido por um newline
-    outputFileB.close(); //Fecha o stream
+  if (outputFile.is_open()) {
+    for (const double& num : coef_B) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    outputFile.close(); //Fecha o stream
     cout << "Arquivo B.dat (termos fonte) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
 
   //--------------------------------------------------------------------------------------------------
-  //Criar o vetor X0 (estimativa inicial) e o arquivo B.dat
+  //Criar o vetor X0 (estimativa inicial) e o arquivo X0.dat
   //--------------------------------------------------------------------------------------------------
   vector <double> coef_X0(N);
   for (size_t i=0; i <= N-1; i++) {coef_X0[i] = 0.5*(Tin+Tout);} //elementos internos
 
-  ofstream outputFileX0("X0.dat"); //Opção de construtor que cria o objeto e o arquivo na mesma instrução
+  outputFile.open("X0.dat"); //Abre o stream
   
-  if (outputFileX0.is_open()) {
-    for (const double& num : coef_X0) {outputFileX0 << num << "\n";} //Escreve cada número seguido por um newline
-    outputFileX0.close(); //Fecha o stream
+  if (outputFile.is_open()) {
+    for (const double& num : coef_X0) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
+    outputFile.close(); //Fecha o stream
     cout << "Arquivo X0.dat (estimativa inicial) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
+
+  //--------------------------------------------------------------------------------------------------
+  //Criar arquivo com a solução analítica
+  //--------------------------------------------------------------------------------------------------
+  double x = 0.0;
+  double T = 0.0;
+
+  outputFile.open("solAnalitica.dat"); //Abre o stream
+  if (outputFile.is_open()){
+    for (x = 0; x <= L; x+=0.01) { 
+      T = ((Tout-Tin) * (exp(u*x/alfa)-1)/((exp(u*L/alfa)-1)))+Tin;
+      outputFile << x << " " << T << "\n";
+    }
+  outputFile.close(); //Fecha o stream
+  cout << "Arquivo solAnalitica.dat (solução analíica) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
 
  return 0;
