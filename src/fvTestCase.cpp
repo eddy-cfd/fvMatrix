@@ -6,15 +6,23 @@
 
 using namespace std;
 
-int main() {
-
+int main(int argc, char* argv[]) {
+  
   //declaração e inicialização de variáveis
   //
-  //
-  double N = 100.0;                      //numero de celulas
+  double N = 100;   //numero de células
+  double u = 0.01;  //velocidade do escoamento
+  
+  //Altera o número de elementos e a velocidade do escoamento, caso usuário forneça os valores na execução do programa
+  if (argc > 2) {
+    N = stod(argv[1]);
+    u = stod(argv[2]);
+    cout << "\n" << "N = " << argv[1] << " elementos" << "\n";   
+    cout << "u = " << argv[2] << " m/s" << "\n\n";
+  } else { cout << "\nPrograma chamado sem parametros especificados pelo usuário. Parametros padrão foram usados.\n\n";}
+
   double L = 10.0;                       //comprimento do duto
   double d = 0.0; d=L/N;                //tamanho do elemento e distancia entre centróides
-  double u = 0.8;                     //velocidade do escoamento
   double Tin = 100.0;                   //temperatura inlet
   double Tout = 200.0;                  //temperatura outlet
   double qdot = 0.0;                 //taxa volumetrica de geracao de calor
