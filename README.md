@@ -76,9 +76,12 @@ Componentes de software
 </p>
 <br>
 1 - fvTestCase.cpp <br><br>
-Sintaxe: fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]<br>
-Exemplo: fvTestCase 100 0.8<br><br>
-100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.<br><br>
+Sintaxe:<br>
+"fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]"<br><br>
+Exemplo:<br>
+"fvTestCase 100 0.8" --> 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
+<br>
+<br>
 Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
 <br><br>
 Propriedades do fluido e condições de contorno são informadas no código fonte. Quando há alteração, é necessário compilar novamente.
