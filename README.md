@@ -19,7 +19,7 @@ Gradiente Bi-Conjugado pré-condicionado (PGBiC);<br>
 Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 <br>
 <br>
-Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema de equações, na forma A.x=B, baseado na discretização de um problema físico, utilizando o Método dos Volumes Finitos (FVM). Para se entender o funcionamento do programa, será feito primeiramente uma revisão do FVM, já no contexto do enunciado do problema físico que se pretende resolver.
+Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema de equações, na forma A.X = B, baseado na discretização de um problema físico, utilizando o Método dos Volumes Finitos (FVM). Para se entender o funcionamento do programa, será feito primeiramente uma revisão do FVM, já no contexto do enunciado do problema físico que se pretende resolver.
 <br>
 <br>
 <br>
@@ -76,8 +76,15 @@ Componentes de software
 </p>
 <br>
 1 - fvTestCase.cpp <br><br>
-Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.<br><br>
-Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arquivos:<br><br>
+Sintaxe: fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]<br>
+Exemplo: fvTestCase 100 0.8<br><br>
+100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.<br><br>
+Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
+<br><br>
+Propriedades do fluido e condições de contorno são informadas no código fonte. Quando há alteração, é necessário compilar novamente.
+<br><br>
+Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arquivos:
+<br><br>
 -->  A.dat - Vetor A (matriz de coeficientes).<br>
 -->  B.dat - Vetor B (termos fonte).<br>
 -->  X0.dat - Vetor X0 (solução inicial).<br>
@@ -85,8 +92,12 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 -->  solAnalitica.dat - Solução analítica do caso. Está no formato apropriado para ser usado no GNUPlot.
 <br>
 <br>
+<br>
+<br>
 2 - gaussSiedel.cpp <br><br>
 Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat".
+<br>
+<br>
 <br>
 <br>
 3 - gradConjugado.cpp <br><br>
