@@ -10,7 +10,7 @@ Trabalho de fim de curso
 Resumo: 
 <br>
 <br>
-O objetivo deste trabalho foi a implementação em C++ dos algorítmos para solução iterativa de sistemas lineares, usando os seguintes métodos:<br>
+O objetivo deste trabalho foi a implementação em C++ dos algorítmos para solução iterativa de sistemas lineares, usando os seguintes métodos:<br><br>
 Gauss-Siedel;<br>
 Gradiente Conjugado (GC);<br>
 Gradiente Conjugado pré-condicionado (PGC);<br>
