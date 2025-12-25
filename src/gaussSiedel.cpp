@@ -9,16 +9,24 @@ void residuo(vector<double>&, vector<double>&, vector<double>&, vector<double>&)
 double normaVetor(vector<double>&);
 
 
-int main(){
+int main(int argc, char* argv[]){
+  
   //variáveis de dados de entrada/saída
   vector <double> A;
   vector <double> B;
   vector <double> X;
   vector <double> r;
+  double lambda = 1;
   ifstream dataFromFile;
   ofstream dataToFile;
   double numero;
 
+  cout << "\n------------------------------ Método Gauss-Siedel ------------------------------\n";
+  
+  if(argc > 1) {
+      lambda = stod(argv[1]);
+      cout << "\n" << "lambda = " << argv[1] << "\n"; 
+  } else {cout << "\nCoeficiente de relaxação (lambda) não informado. Usando padrão lambda = 1\n";}
 
   //carregar vetor A
   dataFromFile.open ("A.dat", ios::in);
@@ -55,43 +63,52 @@ int main(){
 
   //variáveis internas do algoritmo
   int N = X.size();
-  int iter = 0;
-  double somaN = 0.0;
-  double somaN_ = 0.0;
+  int k = 0;
+  double somak = 0.0;
+  double somak_1 = 0.0;
+  double somam = 0.0;
   vector <double> R(N) ;
   double normaR = 0.0;
   
   //verificação da consistência dos dados
-  cout << "Método Gauss Siedel\n\n";
   if(X.size() == B.size() || A.size() == pow(B.size(),2)) 
     cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
   else  
     {cout << "Problema com arquivos de dados ou inconsistência de dados\n\n"; return 1;}
 
+  //verificação da dominancia diagonal
+  for(int i = 0; i < N; i++){
+    somam = 0.0;
+    for(int j=0; j < N; j++) {somam += abs(A[i*N+j]);}
+    somam = somam - A[i*(N+1)];
+    if (somam > A[i*(N+1)]) {cout << "Sistema não é diagonal dominante\n"; return 0;}
+  }
+  
+
   //algoritmo de Gauss-Siedel
   do{
-    iter++;
-    for(int i=0; i < N; i++){
-      somaN=0.0;
-      somaN_=0.0;
-      if (i-1 >= 0) for(int j=0; j <= i-1; j++) somaN += A[i*N+j]*X[j];
-      for(int j=i+1; j < N; j++) somaN_ += A[i*N+j]*X[j]; 
-      X[i]=(1/A[i*(N+1)])*(B[i]-somaN_-somaN);
+    k++;
+    for(int i = 0; i < N; i++){
+      somak = 0.0;
+      somak_1 = 0.0;
+      if (i-1 >= 0) for(int j=0; j <= i-1; j++) somak += A[i*N+j]*X[j];
+      for(int j=i+1; j < N; j++) somak_1 += A[i*N+j]*X[j]; 
+      X[i] = (lambda*(1/A[i*(N+1)])*(B[i]-somak_1-somak))+((1-lambda)*X[i]);
     }
     residuo(A,X,B,R);
     normaR = normaVetor(R);
   } while (normaR > 0.001);
   
   //escrever na tela a solução do sistema
-  cout << "Solução do sistema:" << "\n";
-  //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << X[i] << "\n";      
+  cout << "Solução do sistema:" << "\n";     
   cout << "Norma do resíduo = " << normaR << "\n";
-  cout << "Número de iterações = " << iter << "\n";
+  cout << "Número de iterações = " << k << "\n";
 
   //--------------------------------------------------------------------------------------------------
   //Criar o arquivo X.dat com a solução do sistema
   //--------------------------------------------------------------------------------------------------
   dataToFile.open ("X.dat");
+
   if (dataToFile.is_open()) {
     for (const double& num : X) {dataToFile << num << "\n";} //Escreve cada número seguido por um newline
     dataToFile.close(); //Fecha o stream
