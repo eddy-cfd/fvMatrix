@@ -102,7 +102,7 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 <br>
 2 - gaussSiedel.cpp <br><br>
 Sintaxe:<br>
-"gaussSiedel [coeficiente de relaxação (lambda)]"<br>
+"gaussSiedel [coeficiente de relaxação lambda]"<br>
 Caso lambda não seja especificado pelo usuário, o programa assume o valor default: lambda = 1. 
 <br><br>
 Exemplo:<br>
