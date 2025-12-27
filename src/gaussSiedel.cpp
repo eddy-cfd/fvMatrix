@@ -25,8 +25,8 @@ int main(int argc, char* argv[]){
   
   if(argc > 1) {
       lambda = stod(argv[1]);
-      cout << "\n" << "lambda = " << argv[1] << "\n"; 
-  } else {cout << "\nCoeficiente de relaxação (lambda) não informado. Usando padrão lambda = 1\n";}
+      cout << "\n" << "lambda = " << lambda << "\n"; 
+  } else {cout << "\n" << "lambda (default) = " << lambda << "\n";}
 
   //carregar vetor A
   dataFromFile.open ("A.dat", ios::in);

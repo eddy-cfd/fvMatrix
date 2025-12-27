@@ -95,13 +95,26 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 -->  B.dat - Vetor B (termos fonte).<br>
 -->  X0.dat - Vetor X0 (solução inicial).<br>
 -->  r.dat - Coordenadas (afastamentos) dos centróides dos volumes de controle, ao longo do duto.<br>
--->  solAnalitica.dat - Solução analítica do caso. Está no formato apropriado para ser usado no GNUPlot.
+-->  solAnalitica.dat - Solução analítica do caso (pares r,T). Está no formato apropriado para ser usado no GNUPlot.
 <br>
 <br>
 <br>
 <br>
 2 - gaussSiedel.cpp <br><br>
+Sintaxe:<br>
+"gaussSiedel [coeficiente de relaxação (lambda)]"<br>
+Caso lambda não seja especificado pelo usuário, o programa assume o valor default: lambda = 1. 
+<br><br>
+Exemplo:<br>
+"gaussSiedel 0.5" --> lambda = 0.5
+<br>
+<br>
 Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat".
+<br><br>
+Cada vez que o gaussSiedel é executado, são gerados/editados os seguintes arquivos:
+<br><br>
+-->  X.dat - Vetor X (solução do sistema).<br>
+-->  solNumerica.dat - Solução numérica do caso (pares r,X). Está no formato apropriado para ser usado no GNUPlot.
 <br>
 <br>
 <br>
