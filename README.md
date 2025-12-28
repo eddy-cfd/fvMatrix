@@ -94,9 +94,9 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 Sintaxe:<br>
-"fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]"<br><br>
+<i>fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i><br><br>
 Exemplo:<br>
-"fvTestCase 100 0.8" --> 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
+<i>fvTestCase 100 0.8</i> --> 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
 <br>
 <br>
 Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
@@ -116,11 +116,11 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 <br>
 <b>2 - gaussSiedel.cpp</b><br><br>
 Sintaxe:<br>
-<i>"gaussSiedel [coeficiente de relaxação lambda]"</i><br>
+<i>gaussSiedel [coeficiente de relaxação lambda]</i><br>
 Caso lambda não seja especificado pelo usuário, o programa assume o valor default: lambda = 1. 
 <br><br>
 Exemplo:<br>
-<i>"gaussSiedel 0.5" </i>--> lambda = 0.5
+<i>gaussSiedel 0.5</i>--> lambda = 0.5
 <br>
 <br>
 Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp.
