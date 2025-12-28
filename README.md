@@ -116,11 +116,11 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 <br>
 <b>2 - gaussSiedel.cpp</b><br><br>
 Sintaxe:<br>
-"gaussSiedel [coeficiente de relaxação lambda]"<br>
+<i>"gaussSiedel [coeficiente de relaxação lambda]"</i><br>
 Caso lambda não seja especificado pelo usuário, o programa assume o valor default: lambda = 1. 
 <br><br>
 Exemplo:<br>
-"gaussSiedel 0.5" --> lambda = 0.5
+<i>"gaussSiedel 0.5" </i>--> lambda = 0.5
 <br>
 <br>
 Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método é garatida se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp.
