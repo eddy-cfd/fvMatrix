@@ -2,12 +2,15 @@
 L2C - Soluções em Computação Científica <br><br>
 Curso:<br>
 Do Cálculo à Simulação Computacional - Fundamentos de Métodos Numéricos com Aplicações<br><br>
-Professor Rafael Gabler Gontijo<br><br><br>
-Trabalho de fim de curso
+Professor:<br>
+Rafael Gabler Gontijo<br><br>
+Aluno:<br>
+Edgard Wiggers<br><br><br><br>
+<b>Trabalho de fim de curso</b>
 </p>
 <br>
 <br>
-**Resumo:** 
+<b>Resumo:</b>
 <br>
 <br>
 O objetivo deste trabalho foi a implementação em C++ dos algorítmos para solução iterativa de sistemas lineares, usando os seguintes métodos:<br><br>
@@ -24,9 +27,7 @@ Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema
 <br>
 <br>
 <br>
-<p align="center">
-Revisão do Método dos Volumes Finitos (FVM)
-</p>
+<center><b>Revisão do Método dos Volumes Finitos (FVM)</b></center>
 <br>
 Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s], temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, com geração interna de calor, conforme ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
@@ -74,11 +75,13 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 <br>
-<p align="center">
-Componentes de software
-</p>
+<center><b>Componentes de software</center></b>
 <br>
-1 - fvTestCase.cpp <br><br>
+<br>
+<br>
+<b>1 - fvTestCase.cpp</b>
+<br>
+<br>
 Sintaxe:<br>
 "fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]"<br><br>
 Exemplo:<br>
@@ -100,7 +103,7 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 <br>
 <br>
 <br>
-2 - gaussSiedel.cpp <br><br>
+<b>2 - gaussSiedel.cpp</b><br><br>
 Sintaxe:<br>
 "gaussSiedel [coeficiente de relaxação lambda]"<br>
 Caso lambda não seja especificado pelo usuário, o programa assume o valor default: lambda = 1. 
@@ -119,5 +122,5 @@ Cada vez que o gaussSiedel é executado, são gerados/editados os seguintes arqu
 <br>
 <br>
 <br>
-3 - gradConjugado.cpp <br><br>
+<b>3 - gradConjugado.cpp </b><br><br>
 Este programa resolve o sistema A.X = B, usando o método do gradiente conjungado. Para tanto, é necessário que a matriz "A" seja simétrica e positivo definida. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 
