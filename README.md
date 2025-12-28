@@ -32,6 +32,18 @@ Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema
 Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s], temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, com geração interna de calor, conforme ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
+1 - fvTestCase.cpp
+
+Sintaxe:
+"fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]"
+
+Exemplo:
+"fvTestCase 100 0.8" --> 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
+
+Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
+
+Propriedades do fluido e condições de contorno são informadas no código fonte. Quando há alteração, é necessário compilar novamente.
+
 O perfil de temperatura ao longo do duto pode ser determinado analiticamente usando-se a equação 4, válida para o caso em que não há geração interna de calor no duto.
 <br>
 <br>
@@ -97,7 +109,7 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 -->  B.dat - Vetor B (termos fonte).<br>
 -->  X0.dat - Vetor X0 (solução inicial).<br>
 -->  r.dat - Coordenadas (afastamentos) dos centróides dos volumes de controle, ao longo do duto.<br>
--->  solAnalitica.dat - Solução analítica do caso (pares r,T). Está no formato apropriado para ser usado no GNUPlot.
+-->  solAnalitica.dat - Solução analítica do escoamento através do duto (pares r,T). Está no formato apropriado para ser usado no GNUPlot.
 <br>
 <br>
 <br>
@@ -116,7 +128,7 @@ Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A conver
 Cada vez que o gaussSiedel é executado, são gerados/editados os seguintes arquivos:
 <br><br>
 -->  X.dat - Vetor X (solução do sistema).<br>
--->  solNumerica.dat - Solução numérica do caso (pares r,X). Está no formato apropriado para ser usado no GNUPlot.
+-->  solNumerica.dat - Solução numérica do escoamento através do duto (pares r,X). Está no formato apropriado para ser usado no GNUPlot.
 <br>
 <br>
 <br>
