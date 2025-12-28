@@ -75,7 +75,7 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 <br>
-<p align="center"><b>Componentes de software</center></p>
+<p align="center"><b>Componentes de software</b></p>
 <br>
 <br>
 <b>1 - fvTestCase.cpp</b>
