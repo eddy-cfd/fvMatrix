@@ -7,7 +7,7 @@ Trabalho de fim de curso
 </p>
 <br>
 <br>
-Resumo: 
+**Resumo:** 
 <br>
 <br>
 O objetivo deste trabalho foi a implementação em C++ dos algorítmos para solução iterativa de sistemas lineares, usando os seguintes métodos:<br><br>
