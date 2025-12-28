@@ -78,7 +78,6 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <p align="center"><b>Componentes de software</center></p>
 <br>
 <br>
-<br>
 <b>1 - fvTestCase.cpp</b>
 <br>
 <br>
