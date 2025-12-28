@@ -63,37 +63,37 @@ int main(int argc, char* argv[]){
 
   //variáveis internas do algoritmo
   int N = X.size();
-  int k = 0;
-  double somak = 0.0;
-  double somak_1 = 0.0;
-  double somam = 0.0;
-  vector <double> R(N) ;
-  double normaR = 0.0;
+  int k = 0;                   //conta o número de iterações  
+  double soma_k = 0.0;         //soma relativa a solução na iteração corrente
+  double soma_kmenos1 = 0.0;   //soma relativa a solução na iteração anterior
+  double somaTermosND = 0.0;   //soma termos não-diagonais
+  vector <double> R(N) ;    //resíduo
+  double normaR = 0.0;         //norma do resíduo, usada como critério de parada do algoritmo gaussSiedel 
   
   //verificação da consistência dos dados
-  if(X.size() == B.size() || A.size() == pow(B.size(),2)) 
-    cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
-  else  
+  if (X.size() == B.size() || A.size() == pow(B.size(),2)) 
+    {cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";}
+  else
     {cout << "Problema com arquivos de dados ou inconsistência de dados\n\n"; return 1;}
 
   //verificação da dominancia diagonal
-  for(int i = 0; i < N; i++){
-    somam = 0.0;
-    for(int j=0; j < N; j++) {somam += abs(A[i*N+j]);}
-    somam = somam - A[i*(N+1)];
-    if (somam > A[i*(N+1)]) {cout << "Sistema não é diagonal dominante\n"; return 0;}
+  for (int i = 0; i < N; i++) {
+    somaTermosND = 0.0;
+    for (int j=0; j < N; j++) {somaTermosND += abs(A[i*N+j]);}
+    somaTermosND = somaTermosND - A[i*(N+1)];
+    if (somaTermosND > A[i*(N+1)]) {cout << "Sistema não é diagonal dominante\n"; return 0;}
   }
   
 
   //algoritmo de Gauss-Siedel
-  do{
+  do {
     k++;
-    for(int i = 0; i < N; i++){
-      somak = 0.0;
-      somak_1 = 0.0;
-      if (i-1 >= 0) for(int j=0; j <= i-1; j++) somak += A[i*N+j]*X[j];
-      for(int j=i+1; j < N; j++) somak_1 += A[i*N+j]*X[j]; 
-      X[i] = (lambda*(1/A[i*(N+1)])*(B[i]-somak_1-somak))+((1-lambda)*X[i]);
+    for (int i = 0; i < N; i++) {
+      soma_k = 0.0;
+      soma_kmenos1 = 0.0;
+      if (i-1 >= 0) {for (int j=0; j <= i-1; j++) {soma_k += A[i*N+j]*X[j];}}
+      for (int j=i+1; j < N; j++) {soma_kmenos1 += A[i*N+j]*X[j];} 
+      X[i] = (lambda*(1/A[i*(N+1)])*(B[i]-soma_kmenos1-soma_k))+((1-lambda)*X[i]);
     }
     residuo(A,X,B,R);
     normaR = normaVetor(R);
