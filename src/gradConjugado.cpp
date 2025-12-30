@@ -56,7 +56,7 @@ int main(){
 
   //variáveis internas do algoritmo
   int N = X.size();
-  int iter = 0;
+  int n = 0;
   double normaR = 0.0;
   double ALFA = 0.0;
   double ALFANum = 0.0;
@@ -65,53 +65,53 @@ int main(){
   double BETANum = 0.0;
   double BETADen = 1.0;
   vector <double> R(N,0);
-  vector <double> R1(N,0);
+  vector <double> R_np1(N,0);
   vector <double> D(N,0);
-  vector <double> ADn(N,0);
+  vector <double> AD(N,0);
   vector <double> ALFAnDn(N,0);
-  vector <double> BETAnDn(N,0);
-  vector <double> Xn1(N,0); 
+  vector <double> BETAD(N,0);
+  vector <double> X_np1(N,0);                   //np1 denota n+1
 
-  //inicialização do vetor resíduo(R) de direção(D)  para inicio das iterações
+  //inicialização do vetor resíduo(R) de direção(D)  para inicio das nações
   residuo(A,X,B,R);   
   D=R;
   
   //loop 
   do{
-    iter = iter+1;
+    n++;
     //cálculo do alfa
-    ALFAnNum = prodEscVetor(D, R);
-    multMatrizVetor(A, D, ADn);
-    ALFAnDen = prodEscVetor(D, ADn);  
-    ALFAn = ALFAnNum / ALFAnDen;
+    ALFANum = prodEscVetor(D, R);
+    multMatrizVetor(A, D, AD);
+    ALFADen = prodEscVetor(D, AD);  
+    ALFA = ALFANum / ALFADen;
 
     //cálculo do Xn+1
-    multEscVetor(ALFAn, D, ALFAnDn);
-    somaVetor(X, ALFAnDn, Xn1);
+    multEscVetor(ALFA, D, ALFAnDn);
+    somaVetor(X, ALFAnDn, X_np1);
   
     //cálculo do resíduo de Xn+1
-    residuo(A,Xn1,B,R1);
-    normaR1 = normaVetor(Rn1);
+    residuo(A,X_np1,B,R_np1);
+    normaR = normaVetor(R_np1);
     
     //cálculo do beta
-    BETAnNum = prodEscVetor(R1, Rn1);
-    BETAnDen = prodEscVetor(Rn, Rn);
-    BETAn = BETAnNum / BETAnDen;
+    BETANum = prodEscVetor(R_np1, R_np1);
+    BETADen = prodEscVetor(R, R);
+    BETA = BETANum / BETADen;
 
     //atualiza valor  do D;
-    multEscVetor(BETAn, D, BETAnDn);
-    somaVetor(R1, BETAnDn, D);
+    multEscVetor(BETA, D, BETAD);
+    somaVetor(R_np1, BETAD, D);
 
     //atualiza valores para próximo loop
-    X=Xn1;
-    Rn=R1;
+    X=X_np1;
+    R=R_np1;
 
-    } while (normaR1 > 0.001);
+    } while (normaR > 0.001);
 
     cout << "Solução do sistema de equações:\n";
     //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
-    cout << "Norma do resíduo = " << normaR1 << "\n";
-    cout << "Número de iterações = " << iter << "\n"; 
+    cout << "Norma do resíduo = " << normaR << "\n";
+    cout << "Número de nações = " << n << "\n"; 
  
     //--------------------------------------------------------------------------------------------------
   //Criar o arquivo RX.dat com a solução do sistema para plotagem
