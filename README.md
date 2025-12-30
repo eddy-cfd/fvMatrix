@@ -134,4 +134,21 @@ Cada vez que o gaussSiedel é executado, são gerados/editados os seguintes arqu
 <br>
 <br>
 <b>3 - gradConjugado.cpp </b><br><br>
+Sintaxe:<br>
+<i>gradConjugado</i>
+<br><br>
 Este programa resolve o sistema A.X = B, usando o método do gradiente conjungado. Para tanto, é necessário que a matriz "A" seja simétrica e positivo definida. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 
+<br>
+<br>
+
+![Alt text](images/figuraGC1.png)
+<br>
+<br>
+Cada vez que o gradConjugado é executado, são gerados/editados os seguintes arquivos:
+<br><br>
+-->  X.dat - Vetor X (solução do sistema).<br>
+-->  solNumerica.dat - Solução numérica do escoamento através do duto (pares r,X). Está no formato apropriado para ser usado no GNUPlot.
+<br>
+<br>
+<br>
+<br>
