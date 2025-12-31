@@ -67,9 +67,9 @@ int main(){
   vector <double> R(N,0);
   vector <double> R_np1(N,0);
   vector <double> D(N,0);
-  vector <double> AD(N,0);
-  vector <double> ALFAnDn(N,0);
-  vector <double> BETAD(N,0);
+  vector <double> AxD(N,0);
+  vector <double> ALFAxD(N,0);
+  vector <double> BETAxD(N,0);
   vector <double> X_np1(N,0);                   //np1 denota n+1
 
   //inicialização do vetor resíduo(R) de direção(D)  para inicio das nações
@@ -81,13 +81,13 @@ int main(){
     n++;
     //cálculo do alfa
     ALFANum = prodEscVetor(D, R);
-    multMatrizVetor(A, D, AD);
-    ALFADen = prodEscVetor(D, AD);  
+    multMatrizVetor(A, D, AxD);
+    ALFADen = prodEscVetor(D, AxD);  
     ALFA = ALFANum / ALFADen;
 
     //cálculo do Xn+1
-    multEscVetor(ALFA, D, ALFAnDn);
-    somaVetor(X, ALFAnDn, X_np1);
+    multEscVetor(ALFA, D, ALFAxD);
+    somaVetor(X, ALFAxD, X_np1);
   
     //cálculo do resíduo de Xn+1
     residuo(A,X_np1,B,R_np1);
@@ -99,17 +99,16 @@ int main(){
     BETA = BETANum / BETADen;
 
     //atualiza valor  do D;
-    multEscVetor(BETA, D, BETAD);
-    somaVetor(R_np1, BETAD, D);
+    multEscVetor(BETA, D, BETAxD);
+    somaVetor(R_np1, BETAxD, D);
 
     //atualiza valores para próximo loop
     X=X_np1;
     R=R_np1;
 
-    } while (normaR > 0.001);
+    } while (normaR > 0.1);
 
-    cout << "Solução do sistema de equações:\n";
-    //for(int i=0; i < N; i++)    cout << "X[" << i << "] = " << Xn[i] << "\n";      
+    cout << "Solução do sistema de equações:\n";      
     cout << "Norma do resíduo = " << normaR << "\n";
     cout << "Número de nações = " << n << "\n"; 
  
