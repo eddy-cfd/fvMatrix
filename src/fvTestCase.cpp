@@ -10,8 +10,8 @@ int main(int argc, char* argv[]) {
   
   //declaração e inicialização de variáveis
   //
-  double N = 100;   //numero de células
-  double u = 0.01;  //velocidade do escoamento
+  double N = 10;   //numero de células
+  double u = 0.02;  //velocidade do escoamento
   
   //Altera o número de elementos e a velocidade do escoamento, caso usuário forneça os valores na execução do programa
   if (argc > 2) {
@@ -21,11 +21,11 @@ int main(int argc, char* argv[]) {
     cout << "u = " << argv[2] << " m/s" << "\n\n";
   } else { cout << "\nPrograma chamado sem parametros especificados pelo usuário. Parametros padrão foram usados.\n\n";}
 
-  double L = 10.0;                       //comprimento do duto
+  double L = 5.0;                       //comprimento do duto
   double d = 0.0; d=L/N;                //tamanho do elemento e distancia entre centróides
   double Tin = 100.0;                   //temperatura inlet
   double Tout = 200.0;                  //temperatura outlet
-  double qdot = 0.0;                 //taxa volumetrica de geracao de calor
+  double qdot = 1000.0;                 //taxa volumetrica de geracao de calor
   double k = 100.0;                     //condutividade térmica
   double rho = 1.0;                     //densidade
   double cp = 1000.0;                   //calor especifico

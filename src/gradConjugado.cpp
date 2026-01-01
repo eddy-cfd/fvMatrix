@@ -23,6 +23,8 @@ int main(){
   ofstream dataToFile;
   double numero;
 
+  cout << "\n------------------------------ Método Gradiente Conjugado  ------------------------------\n";
+
   //carregar vetor A
   dataFromFile.open("A.dat", ios::in);
   if(dataFromFile.is_open())
@@ -106,29 +108,15 @@ int main(){
     X=X_np1;
     R=R_np1;
 
-    } while (normaR > 0.1);
+    } while (normaR > 0.001);
 
     cout << "Solução do sistema de equações:\n";      
     cout << "Norma do resíduo = " << normaR << "\n";
-    cout << "Número de nações = " << n << "\n"; 
- 
-    //--------------------------------------------------------------------------------------------------
-  //Criar o arquivo RX.dat com a solução do sistema para plotagem
-  //--------------------------------------------------------------------------------------------------
- 
-  dataToFile.open ("RX.dat");
-  if (dataToFile.is_open()) {
-    for (int i=0; i<N; i++){  
-      dataToFile << R[i] << " ";
-      dataToFile << X[i] << "\n"; //Escreve cada número seguido por um newline
-    }
-    dataToFile.close(); //Fecha o stream
-    cout << "Arquivo RX.dat (R:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n";
-  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
+    cout << "Número de iterações = " << n << "\n"; 
     
-    //--------------------------------------------------------------------------------------------------
-    //Criar o arquivo X.dat com a solução do sistema
-    //--------------------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------------
+  //Criar o arquivo X.dat com a solução do sistema
+  //--------------------------------------------------------------------------------------------------
   ofstream outputFile("X.dat");
 
   if (outputFile.is_open()) {
@@ -136,7 +124,21 @@ int main(){
     outputFile.close(); //Fecha o stream
     cout << "Arquivo X.dat (solução do sistema) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
-    return 0;
+ 
+  //--------------------------------------------------------------------------------------------------
+  //Criar o arquivo RX.dat com a solução do sistema para plotagem
+  //--------------------------------------------------------------------------------------------------
+  dataToFile.open ("solNumerica.dat");
+  if (dataToFile.is_open()) {
+    for (int i=0; i<N; i++){  
+      dataToFile << R[i] << " ";
+      dataToFile << X[i] << "\n"; //Escreve cada número seguido por um newline
+    }
+    dataToFile.close(); //Fecha o stream
+    cout << "Arquivo solNumerica.dat (r:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n";
+  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}  
+
+  return 0;
 }
 
 void residuo(vector<double>& mtx_A, vector<double>& vet_X, vector<double>& vet_B, vector<double>& vet_R){
