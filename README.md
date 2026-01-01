@@ -82,13 +82,11 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 Sintaxe:<br>
-<i>fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i><br><br>
+<span style="font-family: 'Courier New', monospace;"><i>fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i></span><br><br>
 Exemplo:<br>
-<i>fvTestCase 100 0.8</i> --> 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
-<br>
-<br>
-Resultado:<br>
-100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
+<span style="font-family: 'Courier New', monospace;"><i>fvTestCase 100 0.8</i></span> 
+<br><br>
+Resultado: 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
 <br><br>
 Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
 <br><br>
@@ -107,14 +105,15 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 <br>
 <b>2 - gaussSiedel.cpp</b><br><br>
 Sintaxe:<br>
-<i>gaussSiedel [coeficiente de relaxação lambda]</i><br>
-Caso lambda não seja especificado pelo usuário, o programa assume o valor default: lambda = 1. 
+<span style="font-family: 'Courier New', monospace;"><i>gaussSiedel [coeficiente de relaxação lambda] - default: lambda = 1</i></span>
 <br><br>
 Exemplo:<br>
-<i>gaussSiedel 0.5</i>
+<span style="font-family: 'Courier New', monospace;"><i>gaussSiedel</i></span><br>
+<span style="font-family: 'Courier New', monospace;"><i>gaussSiedel 0.5</i></span>
 <br><br>
 Resultado:<br>
-lambda = 0.5
+<span style="font-family: 'Courier New', monospace;"><i>lambda = 1.0</i></span><br>
+<span style="font-family: 'Courier New', monospace;"><i>lambda = 0.5</i></span>
 <br><br>
 Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método pode ocorrer se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp.
 <br>
@@ -123,6 +122,12 @@ Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A conver
 ![Alt text](images/figuraGaussSiedel1.png)
 
 ![Alt text](images/figuraGaussSiedel2.png)
+
+No método de Gauss-Siedel com relaxação, após o cálculo do valor atual x<sub>i</sub><sup>(k)</sup>, aplicamos uma correção do tipo:<br><br>
+x<sub>i</sub><sup>(k)</sup> = lambda x<sub>i</sub><sup>(k)</sup> + (1-lambda) x<sub>i</sub><sup>(k-1)</sup><br><br>
+Para lambda = 1     --> Gauss-Siedel sem relaxação<br>
+Para 0 < lambda < 1 --> Sub-relaxação. Ajuda alguns sistemas não-convergentes a convergirem.<br>
+Para 1 < lambda < 2 --> Sobre-relaxação. Acelera convergência de sistemas que convergem lentamente.
 <br>
 <br>
 Cada vez que o gaussSiedel é executado, são gerados/editados os seguintes arquivos:
