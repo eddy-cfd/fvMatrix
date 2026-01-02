@@ -32,7 +32,7 @@ Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema
 Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s], temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, com geração interna de calor, conforme ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
-O perfil de temperatura ao longo do duto pode ser determinado analiticamente usando-se a equação 4, válida para o caso em que não há geração interna de calor no duto.
+O perfil de temperatura ao longo do duto pode ser determinado analiticamente usando-se as equações 4.a ou 4.b, atentando-se para as restrições de aplicação de cada uma delas.
 <br>
 <br>
 
