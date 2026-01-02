@@ -116,7 +116,7 @@ int main(int argc, char* argv[]){
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
   
   //--------------------------------------------------------------------------------------------------
-  //Criar o arquivo RX.dat com a solução do sistema para plotagem
+  //Criar o arquivo solNumerica.dat com a solução do sistema para plotagem
   //--------------------------------------------------------------------------------------------------
  
   dataToFile.open ("solNumerica.dat");
@@ -126,7 +126,7 @@ int main(int argc, char* argv[]){
       dataToFile << X[i] << "\n"; //Escreve cada número seguido por um newline
     }
     dataToFile.close(); //Fecha o stream
-    cout << "Arquivo solNumerica.dat (r:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n";
+    cout << "Arquivo solNumerica.dat (r:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}  
   return 0;
 }

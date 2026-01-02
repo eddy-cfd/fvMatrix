@@ -10,22 +10,34 @@ int main(int argc, char* argv[]) {
   
   //declaração e inicialização de variáveis
   //
-  double N = 10;   //numero de células
-  double u = 0.02;  //velocidade do escoamento
+  double N = 10.0;                      //numero de células
+  double u = 0.0;                       //velocidade do escoamento  
+  double qdot = 1000.0;                 //taxa volumetrica de geracao de calor
   
+  cout << "\n---------------------------------- fvMatrix ----------------------------------";
+  cout << "\n-------------------- Gerador de Sistemas de Equações FVM ---------------------"; 
+  cout << "\n---------------------- Duto de ar / Regime estacinário -----------------------\n";
+
   //Altera o número de elementos e a velocidade do escoamento, caso usuário forneça os valores na execução do programa
-  if (argc > 2) {
+  if (argc > 3 && argc < 5) {
     N = stod(argv[1]);
     u = stod(argv[2]);
-    cout << "\n" << "N = " << argv[1] << " elementos" << "\n";   
-    cout << "u = " << argv[2] << " m/s" << "\n\n";
-  } else { cout << "\nPrograma chamado sem parametros especificados pelo usuário. Parametros padrão foram usados.\n\n";}
+    qdot = stod(argv[3]);
+    cout << "\nN = " << N << " elementos" << "\n";   
+    cout << "u = " << u << " m/s" << "\n";
+    cout << "qdot = " << qdot << " W/m3" << "\n\n"; 
+  } 
+  else{
+    cout << "\nParametros default\n"; 
+    cout << "N = " << N << " elementos" << "\n";   
+    cout << "u = " << u << " m/s" << "\n";
+    cout << "qdot = " << qdot << " W/m^3" << "\n\n";
+  }
 
   double L = 5.0;                       //comprimento do duto
   double d = 0.0; d=L/N;                //tamanho do elemento e distancia entre centróides
   double Tin = 100.0;                   //temperatura inlet
   double Tout = 200.0;                  //temperatura outlet
-  double qdot = 1000.0;                 //taxa volumetrica de geracao de calor
   double k = 100.0;                     //condutividade térmica
   double rho = 1.0;                     //densidade
   double cp = 1000.0;                   //calor especifico
@@ -141,15 +153,29 @@ int main(int argc, char* argv[]) {
   double x = 0.0;
   double T = 0.0;
 
-  outputFile.open("solAnalitica.dat"); //Abre o stream
-  if (outputFile.is_open()){
-    for (x = 0; x <= L; x+=0.01) { 
-      T = ((Tout-Tin) * (exp(u*x/alfa)-1)/((exp(u*L/alfa)-1)))+Tin;
-      outputFile << x << " " << T << "\n";
-    }
-  outputFile.close(); //Fecha o stream
-  cout << "Arquivo solAnalitica.dat (solução analíica) criado/atualizado com sucesso." << "\n";
-  } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
+  if(qdot==0 && u != 0){
+    outputFile.open("solAnalitica.dat"); //Abre o stream
+    if (outputFile.is_open()){
+      for (x = 0; x <= L; x+=0.01) { 
+        T = ((Tout-Tin) * (exp(u*x/alfa)-1)/((exp(u*L/alfa)-1)))+Tin;
+        outputFile << x << " " << T << "\n";
+      }
+      outputFile.close(); //Fecha o stream
+      cout << "Arquivo solAnalitica.dat (solução analítica) criado/atualizado com sucesso." << "\n";
+    } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
+  } 
+  else if(u == 0) {
+     outputFile.open("solAnalitica.dat"); //Abre o stream
+    if (outputFile.is_open()){
+      for (x = 0; x <= L; x+=0.01) { 
+        T = Tin + (x/L)*(Tout-Tin)+(0.5*x*qdot/k)*(L-x);
+        outputFile << x << " " << T << "\n";
+      }
+      outputFile.close(); //Fecha o stream
+      cout << "Arquivo solAnalitica.dat (solução analítica) criado/atualizado com sucesso." << "\n";
+    } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
+  } 
+  else cout << "Não existe solução analítica para esta combinação de dados de entrada." << "\n";    
 
  return 0;
 }

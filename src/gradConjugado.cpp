@@ -47,7 +47,16 @@ int main(){
     while (dataFromFile >> numero) X.push_back(numero);
   else 
     {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}  
+  dataFromFile.close();
 
+  //carregar vetor r com coordenadas r.dat
+  //usado quando está resolvendo caso gerado pelo fvMatrix
+  dataFromFile.open("r.dat", ios::in);
+  if(dataFromFile.is_open())
+    while (dataFromFile >> numero) r.push_back(numero);
+  else 
+    {cout << "Impossível abrir arquivos de dados\n\n"; return 1;}
+  dataFromFile.close();
 
   //verificação da consistência dos dados
   cout << "Método grandiente conjugado\n\n";
@@ -117,25 +126,24 @@ int main(){
   //--------------------------------------------------------------------------------------------------
   //Criar o arquivo X.dat com a solução do sistema
   //--------------------------------------------------------------------------------------------------
-  ofstream outputFile("X.dat");
-
-  if (outputFile.is_open()) {
-    for (const double& num : X) {outputFile << num << "\n";} //Escreve cada número seguido por um newline
-    outputFile.close(); //Fecha o stream
+  dataToFile.open("X.dat");
+  if (dataToFile.is_open()) {
+    for (const double& num : X) {dataToFile << num << "\n";} //Escreve cada número seguido por um newline
+    dataToFile.close(); //Fecha o stream
     cout << "Arquivo X.dat (solução do sistema) criado/atualizado com sucesso." << "\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}
  
   //--------------------------------------------------------------------------------------------------
-  //Criar o arquivo RX.dat com a solução do sistema para plotagem
+  //Criar o arquivo solNumerica.dat com a solução do sistema para plotagem
   //--------------------------------------------------------------------------------------------------
   dataToFile.open ("solNumerica.dat");
   if (dataToFile.is_open()) {
     for (int i=0; i<N; i++){  
-      dataToFile << R[i] << " ";
+      dataToFile << r[i] << " ";
       dataToFile << X[i] << "\n"; //Escreve cada número seguido por um newline
     }
     dataToFile.close(); //Fecha o stream
-    cout << "Arquivo solNumerica.dat (r:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n";
+    cout << "Arquivo solNumerica.dat (r:posição, X:solução do sistema) criado/atualizado com sucesso." << "\n\n";
   } else {cerr << "Erro: Impossível criar/abrir arquivo.\n";}  
 
   return 0;
