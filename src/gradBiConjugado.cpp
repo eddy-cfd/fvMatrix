@@ -24,7 +24,7 @@ int main(){
   ofstream dataToFile;
   double numero;
 
-  cout << "\n------------------------------ Método Gradiente Conjugado  ------------------------------\n";
+  cout << "\n------------------------------ Método Gradiente Biconjugado  ------------------------------\n";
 
   //carregar vetor A
   dataFromFile.open("A.dat", ios::in);
@@ -60,7 +60,6 @@ int main(){
   dataFromFile.close();
 
   //verificação da consistência dos dados
-  cout << "Método grandiente conjugado\n\n";
   if(X.size() == B.size() || A.size() == pow(B.size(),2)) 
     cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
   else  
@@ -73,51 +72,74 @@ int main(){
   double ALFA = 0.0;
   double ALFANum = 0.0;
   double ALFADen = 1.0;
-  double BETA = 0.0;
-  double BETANum = 0.0;
-  double BETADen = 1.0;
+  double BETA_np1 = 0.0;
+  double BETANum_np1 = 0.0;
+  double BETADen_np1 = 1.0;
   vector <double> At(N*N,0);
   vector <double> R(N,0);
+  vector <double> Rhat(N,0);
   vector <double> R_np1(N,0);
+  vector <double> Rhat_np1(N, 0);
   vector <double> D(N,0);
+  vector <double> Dhat(N,0);
   vector <double> AxD(N,0);
+  vector <double> AtxDhat(N,0);
   vector <double> ALFAxD(N,0);
-  vector <double> BETAxD(N,0);
+  vector <double> negALFAxAxD(N,0);
+  vector <double> negALFAxAtxDhat(N,0);
+  vector <double> ALFAxDhat(N,0);
+  vector <double> BETA_np1xD(N,0);
+  vector <double> BETA_np1xDhat(N,0);
   vector <double> X_np1(N,0);                   //np1 denota n+1
 
   //inicialização do vetor resíduo(R) de direção(D)  para inicio das nações
-  residuo(A,X,B,R);   
+  residuo(A,X,B,R);
+  Rhat=R;
   D=R;
+  Dhat=R;
+  matrizTransposta(A, At); 
   
   //loop 
   do{
     n++;
     //cálculo do alfa
-    ALFANum = prodEscVetor(D, R);
+    ALFANum = prodEscVetor(Rhat, R);
     multMatrizVetor(A, D, AxD);
-    ALFADen = prodEscVetor(D, AxD);  
+    ALFADen = prodEscVetor(Dhat, AxD);  
     ALFA = ALFANum / ALFADen;
 
     //cálculo do Xn+1
     multEscVetor(ALFA, D, ALFAxD);
     somaVetor(X, ALFAxD, X_np1);
   
-    //cálculo do resíduo de Xn+1
-    residuo(A,X_np1,B,R_np1);
-    normaR = normaVetor(R_np1);
+    //cálculo do novo resíduo R_np1;
+    multEscVetor(-ALFA, AxD, negALFAxAxD);
+    somaVetor(R, negALFAxAxD, R_np1);
+ 
+    //cálculo do novo resíduo Rhat_np1;
+    multMatrizVetor(At, Dhat, AtxDhat);
+    multEscVetor(-ALFA, AtxDhat, negALFAxAtxDhat);
+    somaVetor(Rhat, negALFAxAtxDhat, Rhat_np1);
     
     //cálculo do beta
-    BETANum = prodEscVetor(R_np1, R_np1);
-    BETADen = prodEscVetor(R, R);
-    BETA = BETANum / BETADen;
+    BETANum_np1 = prodEscVetor(Rhat_np1, R_np1);
+    BETADen_np1 = prodEscVetor(Rhat, R);
+    BETA_np1 = BETANum_np1 / BETADen_np1;
 
     //atualiza valor  do D;
-    multEscVetor(BETA, D, BETAxD);
-    somaVetor(R_np1, BETAxD, D);
+    multEscVetor(BETA_np1, D, BETA_np1xD);
+    somaVetor(R_np1, BETA_np1xD, D);
+
+    //atualiza valor  do Dhat;
+    multEscVetor(BETA_np1, Dhat, BETA_np1xDhat);
+    somaVetor(Rhat_np1, BETA_np1xDhat, Dhat);
+
 
     //atualiza valores para próximo loop
-    X=X_np1;
-    R=R_np1;
+    X = X_np1;
+    R = R_np1;
+    Rhat = Rhat_np1;
+    normaR = normaVetor(R);
 
     } while (normaR > 0.001);
 

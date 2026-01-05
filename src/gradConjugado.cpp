@@ -59,7 +59,6 @@ int main(){
   dataFromFile.close();
 
   //verificação da consistência dos dados
-  cout << "Método grandiente conjugado\n\n";
   if(X.size() == B.size() || A.size() == pow(B.size(),2)) 
     cout << "Dados carregados......[OK]\nDados consistentes....[OK]\n\n";
   else  
