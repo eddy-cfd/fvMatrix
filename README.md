@@ -157,3 +157,22 @@ Cada vez que o gradConjugado é executado, são gerados/editados os seguintes ar
 <br>
 <br>
 <br>
+<b>4 - gradBiConjugado.cpp </b><br><br>
+Sintaxe:<br>
+<i>gradBiConjugado</i>
+<br><br>
+Este programa resolve o sistema A.X = B, usando o método do gradiente bi-conjungado. Para tanto, é necessário que a matriz "A" seja positivo definida, porém não há necessidade de ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 
+<br>
+<br>
+
+![Alt text](images/figuraGBiC1.png)
+<br>
+<br>
+Cada vez que o gradBiConjugado é executado, são gerados/editados os seguintes arquivos:
+<br><br>
+-->  X.dat - Vetor X (solução do sistema).<br>
+-->  solNumerica.dat - Solução numérica do escoamento através do duto (pares r,X). Está no formato apropriado para ser usado no GNUPlot.
+<br>
+<br>
+<br>
+<br>
