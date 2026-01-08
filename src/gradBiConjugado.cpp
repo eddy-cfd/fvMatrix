@@ -24,6 +24,11 @@ int main() {
   double numero;
 
   cout << "\n------------------------------ Método Gradiente Biconjugado  ------------------------------\n";
+  /*{{{
+      asdfas
+        asdfasd
+        asdfasdf
+    }}}*/
 
   //carregar vetor A
   dataFromFile.open("A.dat", ios::in);
