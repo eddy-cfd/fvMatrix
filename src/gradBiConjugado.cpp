@@ -24,11 +24,6 @@ int main() {
   double numero;
 
   cout << "\n------------------------------ Método Gradiente Biconjugado  ------------------------------\n";
-  /*{{{
-      asdfas
-        asdfasd
-        asdfasdf
-    }}}*/
 
   //carregar vetor A
   dataFromFile.open("A.dat", ios::in);
@@ -224,7 +219,11 @@ void matrizTransposta(vector<double>& mtx_A, vector<double>& mtx_At) {
 
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
-      if (i != j) { mtx_At[i * N + j] = mtx_A[j * N + i]; }
+      if (i != j) {
+        mtx_At[i * N + j] = mtx_A[j * N + i];
+      } else {
+        mtx_At[i * N + j] = mtx_A[i * N + j];
+      }
     }
   }
 }
