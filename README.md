@@ -31,7 +31,7 @@ Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema
 <br>
 <br>
 <br>
-<p align="center"><b>Enunciado do problema físico</b></p>
+<p align="center"><b>1 - Enunciado do problema físico</b></p>
 <br>
 Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s], temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, com geração interna de calor, conforme ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
@@ -47,7 +47,7 @@ Pode-se também obter uma solução numérica, usando-se o método dos volumes f
 <br>
 <br>
 <br>
-<p align="center"><b>Revisão do Método dos Volumes Finitos (FVM)</b></p>
+<p align="center"><b>2 - Revisão do Método dos Volumes Finitos (FVM)</b></p>
 <br>
 <br>
 
@@ -84,7 +84,7 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 <br>
-<p align="center"><b>Componentes de software</b></p>
+<p align="center"><b>3 - Componentes de software</b></p>
 <br>
 <br>
 <p align="center"><b>ATENÇÃO:</b></p>
