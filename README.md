@@ -17,7 +17,7 @@ Edgard Wiggers</p><br><br><br><br>
 <b>Resumo:</b>
 <br>
 <br>
-O objetivo deste trabalho foi a implementação em C++ dos algorítmos para solução iterativa de sistemas lineares, usando os seguintes métodos:<br><br>
+O objetivo deste trabalho foi a implementação em C++ dos algorítmos para solução iterativa de sistemas de equações algébricas, usando os seguintes métodos:<br><br>
 Gauss-Siedel;<br>
 Gradiente Conjugado (GC);<br>
 Gradiente Conjugado pré-condicionado (PGC);<br>
@@ -102,7 +102,7 @@ Exemplo:<br>
 <br><br>
 Resultado: 100 elementos de malha (volumes de controle), velocidade do escoamento de 0.1 m/s e sem geração de calor.
 <br><br>
-Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
+Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, selecionada automaticamente em função dos dados de entrada fornecidos pelo usuário.
 <br><br>
 Propriedades do fluido e condições de contorno são informadas no código fonte. Quando há alteração, é necessário compilar novamente.
 <br><br>
