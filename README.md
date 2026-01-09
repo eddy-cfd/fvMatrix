@@ -84,7 +84,7 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 Sintaxe:<br>
 <i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i><br><br>
 Exemplo:<br>
-~/fvMatrix/bin$ <i>./fvTestCase 100 0.8</i></span> 
+<i>./fvTestCase 100 0.8</i> 
 <br><br>
 Resultado: 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
 <br><br>
@@ -108,8 +108,8 @@ Sintaxe:<br>
 <i>./gaussSiedel [coeficiente de relaxação lambda] - default: lambda = 1</i></span>
 <br><br>
 Exemplo:<br>
-<span style="color: green;"><i>./gaussSiedel</i></span><br>
-<span style="color: green;"><i>./gaussSiedel 0.5</i></span>
+<i>./gaussSiedel</i><br>
+<i>./gaussSiedel 0.5</i>
 <br><br>
 Resultado:<br>
 <i>lambda = 1.0</i><br>
