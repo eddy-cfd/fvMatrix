@@ -1,10 +1,8 @@
 <p align="center">
 <b>Trabalho de fim de curso</b>
-</p>
 <br>
 <br>
 fvMatrix
-</p>
 <br>
 <br>
 L2C - Soluções em Computação Científica <br><br>
@@ -13,7 +11,7 @@ Do Cálculo à Simulação Computacional - Fundamentos de Métodos Numéricos co
 Professor:<br>
 Rafael Gabler Gontijo<br><br>
 Aluno:<br>
-Edgard Wiggers<br><br><br><br>
+Edgard Wiggers</p><br><br><br><br>
 
 <b>Resumo:</b>
 <br>
