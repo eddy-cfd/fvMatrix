@@ -108,8 +108,8 @@ Sintaxe:<br>
 <i>./gaussSiedel [coeficiente de relaxação lambda] - default: lambda = 1</i></span>
 <br><br>
 Exemplo:<br>
-~/fvMatrix/bin$ <i>./gaussSiedel</i></span><br>
-~/fvMatrix/bin$ <i>./gaussSiedel 0.5</i></span>
+<font color="green">~/fvMatrix/bin$ </font><i>./gaussSiedel</i></span><br>
+<font color="green">~/fvMatrix/bin$ </font><i>./gaussSiedel 0.5</i></span>
 <br><br>
 Resultado:<br>
 <i>lambda = 1.0</i><br>
