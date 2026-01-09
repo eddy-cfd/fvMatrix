@@ -33,7 +33,6 @@ Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema
 <br>
 <p align="center"><b>Enunciado do problema físico</b></p>
 <br>
-<br>
 Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s], temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, com geração interna de calor, conforme ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
@@ -44,6 +43,7 @@ O perfil de temperatura ao longo do duto pode ser determinado analiticamente usa
 ![Alt text](images/figura1.png)
 
 Pode-se também obter uma solução numérica, usando-se o método dos volumes finitos (FVM), através da discretização da geometria do duto em volumes de controle, onde se resolve a equação 3 em cada um dos volumes discretizados.
+<br>
 <br>
 <br>
 <p align="center"><b>Revisão do Método dos Volumes Finitos (FVM)</b></p>
