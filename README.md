@@ -82,9 +82,9 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 Sintaxe:<br>
-<Monospaced><i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i></Monospaced><br><br>
+<i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i><br><br>
 Exemplo:<br>
-<span style="font-family: 'Courier New', Monospaced;">~/fvMatrix/bin$ <i>./fvTestCase 100 0.8</i></span> 
+~/fvMatrix/bin$ <i>./fvTestCase 100 0.8</i></span> 
 <br><br>
 Resultado: 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
 <br><br>
@@ -105,15 +105,15 @@ Cada vez que o fvTestCase é executado, são gerados/editados os seguintes arqui
 <br>
 <b>2 - gaussSiedel.cpp</b><br><br>
 Sintaxe:<br>
-<span style="font-family: 'Courier New', monospace;">~/fvMatrix/bin$ <i>./gaussSiedel [coeficiente de relaxação lambda] - default: lambda = 1</i></span>
+<i>./gaussSiedel [coeficiente de relaxação lambda] - default: lambda = 1</i></span>
 <br><br>
 Exemplo:<br>
-<span style="font-family: 'Courier New', monospace;">~/fvMatrix/bin$ <i>gaussSiedel</i></span><br>
-<span style="font-family: 'Courier New', monospace;">~/fvMatrix/bin$ <i>gaussSiedel 0.5</i></span>
+~/fvMatrix/bin$ <i>./gaussSiedel</i></span><br>
+~/fvMatrix/bin$ <i>./gaussSiedel 0.5</i></span>
 <br><br>
 Resultado:<br>
-<span style="font-family: 'Courier New', monospace;"><i>lambda = 1.0</i></span><br>
-<span style="font-family: 'Courier New', monospace;"><i>lambda = 0.5</i></span>
+<i>lambda = 1.0</i><br>
+<i>lambda = 0.5</i>
 <br><br>
 Este programa resolve o sistema A.X = B, usando o método Gauss-Siedel. A convergência do método pode ocorrer se, e somente se, a matriz "A" for diagonal dominante. A matriz "A" não precisa ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp.
 <br>
@@ -140,7 +140,7 @@ Cada vez que o gaussSiedel é executado, são gerados/editados os seguintes arqu
 <br>
 <b>3 - gradConjugado.cpp </b><br><br>
 Sintaxe:<br>
-<span style="font-family: 'Courier New', monospace;">~/fvMatrix/bin$ <i>./gradConjugado</i></span>
+<i>./gradConjugado</i>
 <br><br>
 Este programa resolve o sistema A.X = B, usando o método do gradiente conjungado. Para tanto, é necessário que a matriz "A" seja simétrica e positivo definida. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 
 <br>
@@ -159,7 +159,7 @@ Cada vez que o gradConjugado é executado, são gerados/editados os seguintes ar
 <br>
 <b>4 - gradBiConjugado.cpp </b><br><br>
 Sintaxe:<br>
-<span style="font-family: 'Courier New', monospace;"><i>./gradBiConjugado</i></span>
+<i>./gradBiConjugado</i>
 <br><br>
 Este programa resolve o sistema A.X = B, usando o método do gradiente bi-conjungado. Para tanto, é necessário que a matriz "A" seja positivo definida, porém não há necessidade de ser simétrica. Os dados de entrada são os vetores "A.dat", "B.dat" e X0.dat, gerados pelo usuário, ou pelo programa fvTestCase.cpp. O programa fornece o vetor solução no arquivo "X.dat". 
 <br>
