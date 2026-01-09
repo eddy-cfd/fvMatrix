@@ -1,11 +1,13 @@
 <p align="center">
 <b>Trabalho de fim de curso</b>
 <br>
-----------fvMatrix----------
+--------------------fvMatrix--------------------
 <br>
 <br>
-L2C - Soluções em Computação Científica <br><br>
+<br>
+<br>
 Curso:<br>
+L2C - Soluções em Computação Científica <br>
 Do Cálculo à Simulação Computacional - Fundamentos de Métodos Numéricos com Aplicações<br><br>
 Professor:<br>
 Rafael Gabler Gontijo<br><br>
