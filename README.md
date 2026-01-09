@@ -82,7 +82,7 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 Sintaxe:<br>
-<monospace><i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i></monospace><br><br>
+<Monospaced><i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i></Monospaced><br><br>
 Exemplo:<br>
 <span style="font-family: 'Courier New', Monospaced;">~/fvMatrix/bin$ <i>./fvTestCase 100 0.8</i></span> 
 <br><br>
