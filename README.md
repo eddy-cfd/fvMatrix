@@ -31,7 +31,9 @@ Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema
 <br>
 <br>
 <br>
-
+<p align="center"><b>Enunciado do problema físico</b></p>
+<br>
+<br>
 Considere o escoamento de ar através de um duto unidimensional (1D), de comprimento L [m], em regime estacionário, com velocidade U [m/s], temperaturas fixadas na entrada e saída do duto, Ti [K] e To [K], respectivamente, com geração interna de calor, conforme ilustrado abaixo. Determinar a termperatura do ar ao longo do duto.
 <br>
 <br>
