@@ -78,7 +78,7 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <p align="center"><b>Componentes de software</b></p>
 <br>
 <br>
-<b>ATENÇÃO: executáveis estão em ~/fvMatrix/bin</b>
+<p align="center"><b>ATENÇÃO: executáveis estão em ~/fvMatrix/bin</b></p>
 <br>
 <br>
 <b>1 - fvTestCase.cpp</b>
