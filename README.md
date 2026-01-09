@@ -1,8 +1,7 @@
 <p align="center">
 <b>Trabalho de fim de curso</b>
 <br>
-<br>
-fvMatrix
+----------fvMatrix----------
 <br>
 <br>
 L2C - Soluções em Computação Científica <br><br>
