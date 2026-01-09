@@ -87,11 +87,11 @@ Depois de obter as equações algébricas para o cálculo da variável de intere
 <br>
 <br>
 Sintaxe:<br>
-<i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento]</i><br><br>
+<i>./fvTestCase [quantidade de volumes de controle] [velocidade do escoamento] [taxa de geração calor interno]</i><br><br>
 Exemplo:<br>
-<i>./fvTestCase 100 0.8</i> 
+<i>./fvTestCase 100 0.1 0</i> 
 <br><br>
-Resultado: 100 elementos de malha (volumes de controle) e velocidade do escoamento de 0.8 m/s.
+Resultado: 100 elementos de malha (volumes de controle), velocidade do escoamento de 0.1 m/s e sem geração de calor.
 <br><br>
 Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, válida para o caso sem geração interna de calor.
 <br><br>
