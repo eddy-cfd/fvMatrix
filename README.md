@@ -26,7 +26,7 @@ Gradiente Bi-Conjugado pré-condicionado (PGBiC);<br>
 Gradiente Bi-Conjugado pré-condicionado estabilizado (PGBiC-Stab).
 <br>
 <br>
-Para complementar o trabalho, foi desenvolvido um programa para gerar um sistema de equações, na forma A.X = B, baseado na discretização de um problema físico, utilizando o Método dos Volumes Finitos (FVM). Para se entender o funcionamento do programa, será feito primeiramente uma revisão do FVM, já no contexto do enunciado do problema físico que se pretende resolver.
+Com o objetivo de aplicar e validar os algorítmos, foi desenvolvido um programa para gerar um sistema de equações, na forma A.X = B, baseado na discretização de um problema físico, utilizando o Método dos Volumes Finitos (FVM). Para se entender o funcionamento do programa, será feito primeiramente uma revisão do FVM, já no contexto do enunciado do problema físico que se pretende resolver.
 <br>
 <br>
 <br>
@@ -102,7 +102,7 @@ Exemplo:<br>
 <br><br>
 Resultado: 100 elementos de malha (volumes de controle), velocidade do escoamento de 0.1 m/s e sem geração de calor.
 <br><br>
-Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do caso ilustrado acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, selecionada automaticamente em função dos dados de entrada fornecidos pelo usuário.
+Este programa gera os vetores "A" e "B", do sistema A.X = B e o vetor "X0" de solução inicial, a partir das equações discretizadas do problema físico descrito acima. Esses vetores são usados pelos programas de solução de sistemas lineares deste repositório. Além disso, é gerada a solução analítica, selecionada automaticamente em função dos dados de entrada fornecidos pelo usuário.
 <br><br>
 Propriedades do fluido e condições de contorno são informadas no código fonte. Quando há alteração, é necessário compilar novamente.
 <br><br>
