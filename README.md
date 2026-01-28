@@ -9,6 +9,8 @@
 Curso:<br>
 L2C - Soluções em Computação Científica <br>
 Do Cálculo à Simulação Computacional - Fundamentos de Métodos Numéricos com Aplicações<br><br>
+Turma:<br> 
+2025/2<br><br>
 Professor:<br>
 Rafael Gabler Gontijo<br><br>
 Aluno:<br>
